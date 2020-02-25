@@ -1,0 +1,195 @@
+39,Devoted,1,40,55
+39,Devoted,2,90,115
+39,Devoted,3,175,220
+68,Rapid,1,40,55
+68,Rapid,2,90,115
+68,Rapid,3,175,220
+28,Efficient,1,35,40
+28,Efficient,2,70,80
+28,Efficient,3,100,120
+63,Planted Feet,1,60,60
+17,Hoarding,1,35,50
+47,Reflexes,1,35,50
+5,Honed,1,35,50
+5,Honed,2,65,80
+5,Honed,3,120,130
+5,Honed,4,160,170
+5,Honed,5,195,210
+69,Tinker,1,20,40
+69,Tinker,2,30,70
+69,Tinker,3,40,150
+18,Taunting,1,35,50
+33,Fatiguing,1,35,40
+33,Fatiguing,2,35,90
+33,Fatiguing,3,35,180
+51,Mysterious,1,20,25
+51,Mysterious,2,30,45
+51,Mysterious,3,40,120
+51,Mysterious,4,50,175
+51,Mysterious,5,60,250
+8,Dragon Slayer,1,35,50
+43,Junk Food,1,30,40
+43,Junk Food,2,30,90
+43,Junk Food,3,30,180
+4,Equilibrium,1,40,55
+4,Equilibrium,2,90,115
+4,Equilibrium,3,175,220
+71,Breakdown,1,35,50
+71,Breakdown,2,65,80
+71,Breakdown,3,120,130
+71,Breakdown,4,160,170
+71,Breakdown,5,195,210
+65,Flanking,1,30,40
+65,Flanking,2,110,140
+65,Flanking,3,180,210
+52,Furnace,1,40,55
+52,Furnace,2,90,115
+52,Furnace,3,175,220
+9,Demon Slayer,1,35,50
+42,Ultimatums,1,35,50
+42,Ultimatums,2,80,100
+42,Ultimatums,3,150,200
+1,Blunted,1,30,40
+1,Blunted,2,30,70
+1,Blunted,3,30,120
+1,Blunted,4,30,155
+1,Blunted,5,30,195
+60,Caroming,1,40,55
+60,Caroming,2,90,115
+60,Caroming,3,175,170
+6,Lucky,1,35,50
+6,Lucky,2,65,80
+6,Lucky,3,120,130
+6,Lucky,4,160,170
+6,Lucky,5,195,210
+62,Lunging,1,40,55
+62,Lunging,2,90,115
+62,Lunging,3,175,170
+59,Confused,1,20,40
+59,Confused,2,30,70
+59,Confused,3,40,150
+45,Trophy-taker's,1,35,50
+45,Trophy-taker's,2,65,80
+45,Trophy-taker's,3,120,130
+45,Trophy-taker's,4,160,170
+45,Trophy-taker's,5,195,210
+55,Imp Souled,1,35,50
+55,Imp Souled,2,65,80
+55,Imp Souled,3,120,130
+55,Imp Souled,4,160,170
+55,Imp Souled,5,195,210
+14,Enlightened,1,35,50
+14,Enlightened,2,80,100
+14,Enlightened,3,150,200
+25,Turtling,1,35,50
+25,Turtling,2,80,100
+25,Turtling,3,150,200
+10,Undead Bait,1,35,45
+64,Enhanced Efficient,1,30,40
+64,Enhanced Efficient,2,120,140
+64,Enhanced Efficient,3,220,230
+21,Cautious,1,35,45
+27,Wise,1,35,50
+27,Wise,2,80,100
+27,Wise,3,150,200
+13,Looting,1,50,65
+31,Profane,1,35,45
+48,Bulwark,1,40,55
+48,Bulwark,2,90,115
+48,Bulwark,3,175,220
+20,Mobile,1,35,50
+0,No effect,1,0,0
+24,Scavenging,1,40,55
+24,Scavenging,2,90,115
+24,Scavenging,3,175,220
+36,Impatient,1,35,50
+36,Impatient,2,80,100
+36,Impatient,3,150,200
+58,Charitable,1,30,40
+58,Charitable,2,75,90
+58,Charitable,3,135,180
+38,Venomblood,1,35,50
+32,Brassican,1,35,50
+15,Glow Worm,1,35,50
+29,Absorbative,1,40,55
+29,Absorbative,2,90,115
+29,Absorbative,3,175,220
+53,Polishing,1,35,50
+53,Polishing,2,80,100
+53,Polishing,3,150,200
+3,Biting,1,35,50
+3,Biting,2,80,100
+3,Biting,3,150,200
+40,Spendthrift,1,40,55
+40,Spendthrift,2,75,90
+40,Spendthrift,3,135,150
+40,Spendthrift,4,170,185
+40,Spendthrift,5,210,220
+41,Shield Bashing,1,35,50
+41,Shield Bashing,2,80,100
+41,Shield Bashing,3,150,200
+12,Demon Bait,1,35,45
+2,Inaccurate,1,30,40
+2,Inaccurate,2,30,70
+2,Inaccurate,3,30,120
+2,Inaccurate,4,30,155
+2,Inaccurate,5,30,195
+30,Precise,1,35,50
+30,Precise,2,65,80
+30,Precise,3,120,130
+30,Precise,4,160,170
+30,Precise,5,195,210
+46,Clear Headed,1,35,50
+46,Clear Headed,2,80,100
+46,Clear Headed,3,150,200
+44,Energising,1,35,50
+44,Energising,2,80,100
+44,Energising,3,150,200
+54,Cheapskate,1,20,40
+54,Cheapskate,2,30,70
+54,Cheapskate,3,40,150
+7,Undead Slayer,1,35,50
+37,Invigorating,1,35,50
+37,Invigorating,2,80,100
+37,Invigorating,3,150,200
+16,Antitheism,1,35,50
+49,Preparation,1,40,55
+49,Preparation,2,90,115
+49,Preparation,3,175,220
+26,Brief Respite,1,35,50
+26,Brief Respite,2,80,100
+26,Brief Respite,3,150,200
+61,Aftershock,1,40,55
+61,Aftershock,2,90,115
+61,Aftershock,3,175,170
+34,Genocidal,1,50,65
+70,Pyromaniac,1,35,50
+70,Pyromaniac,2,65,80
+70,Pyromaniac,3,120,130
+70,Pyromaniac,4,160,170
+70,Pyromaniac,5,195,210
+23,Talking,1,35,50
+50,Mediocrity,1,30,40
+50,Mediocrity,2,30,90
+50,Mediocrity,3,30,180
+72,Prosper,1,35,50
+56,Butterfingers,1,35,50
+56,Butterfingers,2,65,80
+56,Butterfingers,3,120,130
+56,Butterfingers,4,160,170
+56,Butterfingers,5,195,210
+19,Committed,1,35,45
+67,Crystal Shield,1,30,40
+67,Crystal Shield,2,120,150
+67,Crystal Shield,3,150,180
+22,Hallucinogenic,1,35,50
+57,Refined,1,40,55
+57,Refined,2,90,115
+57,Refined,3,175,220
+11,Dragon Bait,1,35,45
+66,Enhanced Devoted,1,30,40
+66,Enhanced Devoted,2,120,140
+66,Enhanced Devoted,3,220,230
+35,Crackling,1,35,50
+35,Crackling,2,80,100
+35,Crackling,3,150,200
