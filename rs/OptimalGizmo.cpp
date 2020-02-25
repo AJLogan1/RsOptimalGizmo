@@ -26,6 +26,12 @@ namespace {
         std::vector<rs::InventionComponent *> possible_components_vector(possible_components.begin(),
                                                                          possible_components.end());
 
+        // Sort the vector (ensures consistency across executions, as pointers may be sorted differently).
+        std::sort(possible_components_vector.begin(), possible_components_vector.end(),
+                  [](const auto &a, const auto &b) {
+                      return a->id < b->id;
+                  });
+
         return possible_components_vector;
     }
 }
