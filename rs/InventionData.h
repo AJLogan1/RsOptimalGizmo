@@ -68,6 +68,15 @@ namespace rs {
             }
         }
 
+        [[nodiscard]] std::bitset<128> possiblePerksBitset(GizmoType t) {
+            auto perks_for_type = perksForType(t);
+            std::bitset<128> set;
+            std::for_each(perks_for_type.begin(), perks_for_type.end(), [&set] (const auto &a) {
+                set.set(a.perk->id);
+            });
+            return set;
+        }
+
         [[nodiscard]] uint8_t totalPotentialContribution(GizmoType t, InventionPerk* perk) const {
             for (const auto &p : perksForType(t)) {
                 if (p.perk->id == perk->id) {
@@ -80,7 +89,6 @@ namespace rs {
     };
 
     struct Gizmo {
-        // INVARIANT - Gizmo is in Gizmo Normal Form
         Gizmo(GizmoType gt,
               InventionComponent *m,
               InventionComponent *t,
@@ -88,8 +96,6 @@ namespace rs {
               InventionComponent *r,
               InventionComponent *b) :
                 type(gt), middle(m), top(t), left(l), right(r), bottom(b) {
-            // Ensure Gizmo is in normal form.
-            ensureNormalForm();
         }
 
         Gizmo() = default;

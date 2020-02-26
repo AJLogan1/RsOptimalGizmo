@@ -95,13 +95,26 @@ namespace rs {
         std::vector<std::pair<Gizmo, std::pair<double, double>>> results;
         results.reserve(search_space_size / 4);
         for (const auto &a : component_search_vector) {
+            if (a->id == rs::components::empty.id) {
+                continue;
+            }
+
             // Back four component encoding of all normal form gizmos tested with this first component.
             std::set<uint32_t> tested_nf_gizmos;
+
+            // Set of contributed perks - used to skip loops where the gizmo is already not in normal form.
+            auto a_contrib = a->possiblePerksBitset(type);
 
             uint8_t a_t1 = a->totalPotentialContribution(type, target.first.perk);
             uint8_t a_t2 = a->totalPotentialContribution(type, target.second.perk);
 
             for (const auto &b : component_search_vector) {
+                // Check to see if new perks are added and set an 'indifferent' bool.
+                auto b_contrib = b->possiblePerksBitset(type);
+                // Are b perks subset of a perks?
+                bool indifferent = (a_contrib & b_contrib) == b_contrib;
+                b_contrib = a_contrib | b_contrib;
+
                 // Calculate total target contribution from components so far.
                 uint8_t b_t1 = b->totalPotentialContribution(type, target.first.perk);
                 uint8_t b_t2 = b->totalPotentialContribution(type, target.second.perk);
@@ -114,6 +127,24 @@ namespace rs {
                 }
 
                 for (const auto &c : component_search_vector) {
+                    // Can check at this point if we are already not in normal form.
+                    bool indifferent_at_c;
+                    auto c_contrib = c->possiblePerksBitset(type);
+                    if (indifferent && (b_contrib & c_contrib) != c_contrib) {
+                        // We aren't in normal form - c contributes new perks.
+                        continue;
+                    } else if (indifferent) {
+                        // Check b's ID is less than or equal c's (otherwise again not in nf).
+                        if (b->id > c->id) {
+                            continue;
+                        }
+                        indifferent_at_c = true;
+                    } else {
+                        // Does c contribute new perks?
+                        indifferent_at_c = (b_contrib & c_contrib) == c_contrib;
+                    }
+                    c_contrib = b_contrib | c_contrib;
+
                     // Calculate total target contribution from components so far.
                     uint8_t c_t1 = c->totalPotentialContribution(type, target.first.perk);
                     uint8_t c_t2 = c->totalPotentialContribution(type, target.second.perk);
@@ -126,9 +157,26 @@ namespace rs {
                     }
 
                     for (const auto &d : component_search_vector) {
+                        // Can check at this point if we are already not in normal form.
+                        bool indifferent_at_d;
+                        auto d_contrib = d->possiblePerksBitset(type);
+                        if (indifferent_at_c && (c_contrib & d_contrib) != d_contrib) {
+                            // We aren't in normal form - d contributes new perks.
+                            continue;
+                        } else if (indifferent_at_c) {
+                            // Ensure c's ID is less than d's.
+                            if (c->id > d->id) {
+                                continue;
+                            }
+                            indifferent_at_d = true;
+                        } else {
+                            indifferent_at_d = (c_contrib & d_contrib) == d_contrib;
+                        }
+                        d_contrib = c_contrib | d_contrib;
+
                         // Calculate total target contribution from components so far.
-                        uint8_t d_t1 = c->totalPotentialContribution(type, target.first.perk);
-                        uint8_t d_t2 = c->totalPotentialContribution(type, target.second.perk);
+                        uint8_t d_t1 = d->totalPotentialContribution(type, target.first.perk);
+                        uint8_t d_t2 = d->totalPotentialContribution(type, target.second.perk);
                         uint16_t d_t1_rt = c_t1_rt + c_t1;
                         uint16_t d_t2_rt = c_t2_rt + c_t2;
                         // If it is not possible to reach the target amount, move on to the next component.
@@ -138,6 +186,16 @@ namespace rs {
                         }
 
                         for (const auto &e : component_search_vector) {
+                            auto e_contrib = e->possiblePerksBitset(type);
+                            if (indifferent_at_d && (d_contrib & e_contrib) != e_contrib) {
+                                // We aren't in normal form - e contributes new perks.
+                                continue;
+                            } else if (indifferent_at_d) {
+                                if (d->id > e->id) {
+                                    continue;
+                                }
+                            }
+
                             uint8_t e_t1 = e->totalPotentialContribution(type, target.first.perk);
                             uint8_t e_t2 = e->totalPotentialContribution(type, target.second.perk);
                             uint16_t t1_total = a_t1 + b_t1 + c_t1 + d_t1 + e_t1;
@@ -149,11 +207,6 @@ namespace rs {
 
                             // Create test Gizmo (implicitly converted to normal form).
                             rs::Gizmo gizmo = {type, a, b, c, d, e};
-                            if (tested_nf_gizmos.count(gizmo.backFourEncoding())) {
-                                // Already tested this normal form Gizmo.
-                                continue;
-                            }
-                            tested_nf_gizmos.insert(gizmo.backFourEncoding());
 
                             // Calculate perk probabilities.
                             auto res = rs::perkProbabilities(gizmo, invention_level);
