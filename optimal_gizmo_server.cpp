@@ -106,7 +106,7 @@ void handleSearchPossibleGizmo(const drogon::HttpRequestPtr &req,
             return a.second.second < b.second.second;
         } else {
             if (std::abs(a.second.second - b.second.second) > 0.0000001) {
-                return a.second.first > b.second.first;
+                return a.second.second < b.second.second;
             } else {
                 return a.first.compUsedIdSum() < b.first.compUsedIdSum();
             }
