@@ -1,520 +1,520 @@
-110,Precious components,weapon,Looting,9,33
-110,Precious components,weapon,Antitheism,12,45
-110,Precious components,weapon,Scavenging,12,40
-110,Precious components,weapon,Spendthrift,9,32
-110,Precious components,tool,Antitheism,12,45
-110,Precious components,armour,Looting,9,33
-110,Precious components,armour,Antitheism,12,45
-110,Precious components,armour,Scavenging,12,40
-100,Precise components,weapon,Cautious,12,44
-100,Precise components,weapon,Blunted,12,45
-100,Precise components,weapon,Equilibrium,9,33
-100,Precise components,weapon,Precise,9,32
-100,Precise components,weapon,Flanking,9,32
-100,Precise components,tool,Cautious,12,44
-100,Precise components,tool,Honed,9,32
-100,Precise components,armour,Cautious,12,44
-111,Pious components,weapon,Enlightened,9,32
-111,Pious components,weapon,Hoarding,9,33
-111,Pious components,weapon,Wise,12,40
-111,Pious components,weapon,Dragon Bait,12,45
-111,Pious components,weapon,Mediocrity,12,44
-111,Pious components,tool,Enlightened,9,32
-111,Pious components,tool,Hoarding,9,33
-111,Pious components,tool,Wise,12,40
-111,Pious components,tool,Charitable,12,44
-111,Pious components,armour,Enlightened,9,32
-111,Pious components,armour,Hoarding,9,33
-111,Pious components,armour,Wise,12,40
-111,Pious components,armour,Dragon Bait,12,45
-109,Evasive components,weapon,Cautious,12,44
-109,Evasive components,weapon,Blunted,12,45
-109,Evasive components,tool,Cautious,12,44
-109,Evasive components,tool,Prosper,12,8
-109,Evasive components,armour,Cautious,12,44
-109,Evasive components,armour,Turtling,12,40
-109,Evasive components,armour,Venomblood,9,33
-4,Blade parts,weapon,Antitheism,8,32
-4,Blade parts,weapon,Biting,5,15
-4,Blade parts,weapon,Junk Food,8,33
-4,Blade parts,tool,Antitheism,8,32
-4,Blade parts,tool,Honed,7,25
-4,Blade parts,armour,Antitheism,8,32
-4,Blade parts,armour,Biting,5,15
-4,Blade parts,armour,Junk Food,8,33
-5,Magic parts,weapon,Antitheism,8,32
-5,Magic parts,weapon,Undead Bait,8,33
-5,Magic parts,weapon,Crackling,9,33
-5,Magic parts,weapon,Ultimatums,5,15
-5,Magic parts,weapon,Energising,7,27
-5,Magic parts,weapon,Spendthrift,5,13
-5,Magic parts,tool,Antitheism,8,32
-5,Magic parts,tool,Honed,7,27
-5,Magic parts,armour,Antitheism,8,32
-5,Magic parts,armour,Undead Bait,8,33
-5,Magic parts,armour,Crackling,9,33
-5,Magic parts,armour,Ultimatums,5,15
-5,Magic parts,armour,Energising,7,27
-18,Deflecting parts,weapon,Shield Bashing,9,33
-18,Deflecting parts,weapon,Inaccurate,8,33
-18,Deflecting parts,weapon,Mediocrity,8,32
-18,Deflecting parts,tool,Imp Souled,7,27
-18,Deflecting parts,armour,Shield Bashing,9,33
-18,Deflecting parts,armour,Venomblood,5,15
-120,Direct components,weapon,Cautious,12,44
-120,Direct components,weapon,Biting,9,33
-120,Direct components,weapon,Blunted,12,45
-120,Direct components,tool,Cautious,12,44
-120,Direct components,tool,Charitable,12,40
-120,Direct components,tool,Pyromaniac,9,32
-120,Direct components,armour,Cautious,12,44
-120,Direct components,armour,Biting,9,33
-143,Ancient components,weapon,Demon Slayer,44,8
-143,Ancient components,tool,Prosper,50,50
-143,Ancient components,armour,Demon Slayer,44,8
-141,Refined components,weapon,Hoarding,11,25
-141,Refined components,weapon,Committed,11,25
-141,Refined components,weapon,Cautious,11,25
-141,Refined components,weapon,Dragon Bait,11,25
-141,Refined components,weapon,Demon Bait,11,25
-141,Refined components,weapon,Energising,11,25
-141,Refined components,weapon,Inaccurate,11,25
-141,Refined components,tool,Hoarding,11,25
-141,Refined components,tool,Committed,11,25
-141,Refined components,tool,Cautious,11,25
-141,Refined components,tool,Refined,11,25
-141,Refined components,armour,Hoarding,11,25
-141,Refined components,armour,Committed,11,25
-141,Refined components,armour,Cautious,11,25
-141,Refined components,armour,Dragon Bait,11,25
-141,Refined components,armour,Demon Bait,11,25
-141,Refined components,armour,Energising,11,25
-141,Refined components,armour,Brief Respite,11,25
-135,Resilient components,tool,Refined,25,28
-135,Resilient components,armour,Bulwark,45,8
-107,Enhancing components,weapon,Dragon Slayer,12,40
-107,Enhancing components,weapon,Invigorating,9,33
-107,Enhancing components,weapon,Energising,12,44
-107,Enhancing components,weapon,Inaccurate,12,45
-107,Enhancing components,tool,Cheapskate,12,45
-107,Enhancing components,tool,Refined,9,33
-107,Enhancing components,tool,Rapid,12,40
-107,Enhancing components,armour,Dragon Slayer,12,40
-107,Enhancing components,armour,Invigorating,9,33
-107,Enhancing components,armour,Energising,12,44
-149,Ilujankan components,weapon,Aftershock,40,8
-2,Simple parts,weapon,Looting,5,15
-2,Simple parts,weapon,Antitheism,8,32
-2,Simple parts,weapon,Hallucinogenic,7,28
-2,Simple parts,weapon,Talking,7,27
-2,Simple parts,tool,Antitheism,8,32
-2,Simple parts,tool,Hallucinogenic,7,28
-2,Simple parts,tool,Talking,7,27
-2,Simple parts,armour,Looting,5,15
-2,Simple parts,armour,Antitheism,8,32
-2,Simple parts,armour,Hallucinogenic,7,28
-2,Simple parts,armour,Talking,7,27
-2,Simple parts,armour,Profane,8,33
-134,Oceanic components,weapon,Invigorating,45,8
-134,Oceanic components,tool,Polishing,25,28
-134,Oceanic components,armour,Invigorating,45,8
-126,Fungal components,tool,Tinker,10,28
-126,Fungal components,armour,Absorbative,40,8
-105,Heavy components,weapon,Committed,12,44
-105,Heavy components,weapon,Demon Bait,12,45
-105,Heavy components,tool,Committed,12,44
-105,Heavy components,tool,Butterfingers,12,45
-105,Heavy components,tool,Breakdown,12,40
-105,Heavy components,armour,Committed,12,44
-105,Heavy components,armour,Demon Bait,12,45
-105,Heavy components,armour,Bulwark,12,40
-105,Heavy components,armour,Preparation,9,33
-131,Armadyl components,weapon,Precise,44,8
-131,Armadyl components,tool,Charitable,25,28
-131,Armadyl components,armour,Devoted,39,9
-17,Flexible parts,weapon,Cautious,7,27
-17,Flexible parts,weapon,Wise,9,33
-17,Flexible parts,weapon,Dragon Bait,8,32
-17,Flexible parts,weapon,Mobile,7,28
-17,Flexible parts,weapon,Clear Headed,5,15
-17,Flexible parts,tool,Cautious,7,27
-17,Flexible parts,tool,Wise,9,33
-17,Flexible parts,armour,Cautious,7,27
-17,Flexible parts,armour,Wise,9,33
-17,Flexible parts,armour,Dragon Bait,8,32
-17,Flexible parts,armour,Mobile,7,28
-17,Flexible parts,armour,Clear Headed,5,15
-17,Flexible parts,armour,Profane,8,33
-12,Cover parts,weapon,Shield Bashing,5,15
-12,Cover parts,tool,Confused,8,33
-12,Cover parts,tool,Furnace,7,25
-12,Cover parts,armour,Shield Bashing,5,15
-12,Cover parts,armour,Profane,8,33
-12,Cover parts,armour,Bulwark,9,33
-7,Spiritual parts,weapon,Enlightened,5,13
-7,Spiritual parts,weapon,Antitheism,8,32
-7,Spiritual parts,weapon,Hoarding,5,15
-7,Spiritual parts,weapon,Cautious,7,27
-7,Spiritual parts,weapon,Wise,9,33
-7,Spiritual parts,weapon,Inaccurate,8,33
-7,Spiritual parts,tool,Enlightened,5,13
-7,Spiritual parts,tool,Antitheism,8,32
-7,Spiritual parts,tool,Hoarding,5,15
-7,Spiritual parts,tool,Cautious,7,27
-7,Spiritual parts,tool,Wise,9,33
-7,Spiritual parts,armour,Enlightened,5,13
-7,Spiritual parts,armour,Antitheism,8,32
-7,Spiritual parts,armour,Hoarding,5,15
-7,Spiritual parts,armour,Cautious,7,27
-7,Spiritual parts,armour,Wise,9,33
-150,Cywir components,weapon,Planted Feet,20,20
-112,Light components,weapon,Glow Worm,12,40
-112,Light components,weapon,Hallucinogenic,12,44
-112,Light components,weapon,Inaccurate,12,45
-112,Light components,tool,Glow Worm,12,40
-112,Light components,tool,Hallucinogenic,12,44
-112,Light components,tool,Pyromaniac,12,40
-112,Light components,tool,Rapid,9,33
-112,Light components,armour,Glow Worm,12,40
-112,Light components,armour,Hallucinogenic,12,44
-112,Light components,armour,Lucky,9,33
-3,Base parts,weapon,Antitheism,8,32
-3,Base parts,weapon,Talking,7,27
-3,Base parts,weapon,Dragon Slayer,5,15
-3,Base parts,weapon,Inaccurate,8,33
-3,Base parts,tool,Antitheism,8,32
-3,Base parts,tool,Talking,7,27
-3,Base parts,tool,Charitable,7,25
-3,Base parts,armour,Antitheism,8,32
-3,Base parts,armour,Talking,7,27
-3,Base parts,armour,Dragon Slayer,5,15
-3,Base parts,armour,Turtling,9,33
-16,Plated parts,weapon,Committed,8,33
-16,Plated parts,weapon,Blunted,8,32
-16,Plated parts,tool,Committed,8,33
-16,Plated parts,armour,Committed,8,33
-16,Plated parts,armour,Absorbative,5,15
-118,Swift components,weapon,Invigorating,9,33
-118,Swift components,weapon,Shield Bashing,12,40
-118,Swift components,weapon,Blunted,12,45
-118,Swift components,tool,Imp Souled,12,40
-118,Swift components,armour,Invigorating,9,33
-118,Swift components,armour,Shield Bashing,12,40
-129,Saradomin components,weapon,Spendthrift,44,8
-129,Saradomin components,armour,Devoted,39,9
-13,Clear parts,weapon,Glow Worm,9,33
-13,Clear parts,weapon,Cautious,7,27
-13,Clear parts,weapon,Hallucinogenic,7,28
-13,Clear parts,weapon,Demon Slayer,5,15
-13,Clear parts,tool,Glow Worm,9,33
-13,Clear parts,tool,Cautious,7,27
-13,Clear parts,tool,Hallucinogenic,7,28
-13,Clear parts,armour,Glow Worm,9,33
-13,Clear parts,armour,Cautious,7,27
-13,Clear parts,armour,Hallucinogenic,7,28
-13,Clear parts,armour,Demon Slayer,5,15
-13,Clear parts,armour,Profane,8,33
-13,Clear parts,armour,Crystal Shield,5,15
-103,Healthy components,weapon,Committed,12,44
-103,Healthy components,weapon,Efficient,9,32
-103,Healthy components,weapon,Inaccurate,12,45
-103,Healthy components,tool,Committed,12,44
-103,Healthy components,tool,Efficient,9,32
-103,Healthy components,armour,Committed,12,44
-103,Healthy components,armour,Efficient,9,32
-103,Healthy components,armour,Venomblood,9,33
-21,Smooth parts,weapon,Scavenging,9,33
-21,Smooth parts,weapon,Undead Bait,8,33
-21,Smooth parts,weapon,Energising,7,27
-21,Smooth parts,weapon,Blunted,8,32
-21,Smooth parts,weapon,Equilibrium,5,13
-21,Smooth parts,tool,Cheapskate,8,33
-21,Smooth parts,tool,Refined,7,27
-21,Smooth parts,armour,Scavenging,9,33
-21,Smooth parts,armour,Undead Bait,8,33
-21,Smooth parts,armour,Energising,7,27
-21,Smooth parts,armour,Reflexes,5,15
-104,Knightly components,weapon,Taunting,44,8
-104,Knightly components,armour,Taunting,44,8
-101,Sharp components,weapon,Dragon Bait,12,45
-101,Sharp components,weapon,Taunting,9,33
-101,Sharp components,weapon,Flanking,9,32
-101,Sharp components,tool,Honed,12,40
-101,Sharp components,tool,Furnace,9,33
-101,Sharp components,armour,Dragon Bait,12,45
-101,Sharp components,armour,Taunting,9,33
-108,Protective components,weapon,Hoarding,9,33
-108,Protective components,weapon,Demon Bait,12,45
-108,Protective components,weapon,Shield Bashing,12,40
-108,Protective components,tool,Hoarding,9,33
-108,Protective components,tool,Polishing,12,40
-108,Protective components,armour,Hoarding,9,33
-108,Protective components,armour,Demon Bait,12,45
-108,Protective components,armour,Shield Bashing,12,40
-119,Imbued components,weapon,Crackling,12,40
-119,Imbued components,weapon,Ultimatums,9,33
-119,Imbued components,weapon,Junk Food,12,45
-119,Imbued components,weapon,Energising,12,44
-119,Imbued components,tool,Furnace,12,40
-119,Imbued components,armour,Crackling,12,40
-119,Imbued components,armour,Ultimatums,9,33
-119,Imbued components,armour,Junk Food,12,45
-119,Imbued components,armour,Energising,12,44
-114,Ethereal components,weapon,Antitheism,12,45
-114,Ethereal components,weapon,Wise,12,40
-114,Ethereal components,tool,Antitheism,12,45
-114,Ethereal components,tool,Wise,12,40
-114,Ethereal components,armour,Antitheism,12,45
-114,Ethereal components,armour,Wise,12,40
-114,Ethereal components,armour,Brief Respite,9,33
-121,Subtle components,weapon,Looting,9,33
-121,Subtle components,weapon,Demon Bait,12,45
-121,Subtle components,weapon,Mobile,12,44
-121,Subtle components,tool,Confused,12,45
-121,Subtle components,armour,Looting,9,33
-121,Subtle components,armour,Demon Bait,12,45
-121,Subtle components,armour,Mobile,12,44
-121,Subtle components,armour,Crystal Shield,12,40
-142,Fortunate components,weapon,Looting,13,40
-142,Fortunate components,weapon,Hoarding,13,40
-142,Fortunate components,weapon,Brassican,13,40
-142,Fortunate components,weapon,Spendthrift,13,40
-142,Fortunate components,tool,Hoarding,13,40
-142,Fortunate components,tool,Brassican,13,40
-142,Fortunate components,tool,Polishing,13,40
-142,Fortunate components,armour,Looting,13,40
-142,Fortunate components,armour,Hoarding,13,40
-142,Fortunate components,armour,Brassican,13,40
-142,Fortunate components,armour,Lucky,13,40
-132,Bandos components,weapon,Genocidal,44,8
-132,Bandos components,armour,Genocidal,44,8
-132,Bandos components,armour,Devoted,39,9
-147,Shadow components,weapon,Caroming,40,8
-113,Living components,weapon,Talking,12,44
-113,Living components,weapon,Undead Slayer,9,33
-113,Living components,tool,Talking,12,44
-113,Living components,armour,Talking,12,44
-113,Living components,armour,Undead Slayer,9,33
-113,Living components,armour,Profane,12,45
-144,Culinary components,weapon,Invigorating,39,9
-144,Culinary components,armour,Invigorating,39,9
-144,Culinary components,armour,Brief Respite,45,8
-124,Seren components,weapon,Enlightened,40,8
-124,Seren components,weapon,Wise,48,5
-124,Seren components,tool,Enlightened,40,8
-124,Seren components,tool,Wise,48,5
-124,Seren components,armour,Enlightened,40,8
-124,Seren components,armour,Wise,48,5
-139,Ascended components,weapon,Efficient,40,8
-139,Ascended components,weapon,Enhanced Efficient,20,25
-139,Ascended components,tool,Efficient,40,8
-139,Ascended components,tool,Enhanced Efficient,20,25
-139,Ascended components,armour,Efficient,40,8
-139,Ascended components,armour,Enhanced Efficient,20,25
-128,Corporeal components,armour,Brief Respite,40,8
-23,Crystal parts,weapon,Efficient,5,13
-23,Crystal parts,weapon,Trophy-taker's,7,27
-23,Crystal parts,weapon,Undead Slayer,5,15
-23,Crystal parts,weapon,Demon Bait,8,32
-23,Crystal parts,tool,Efficient,5,13
-23,Crystal parts,tool,Cheapskate,8,32
-23,Crystal parts,armour,Efficient,5,13
-23,Crystal parts,armour,Trophy-taker's,7,27
-23,Crystal parts,armour,Undead Slayer,5,15
-23,Crystal parts,armour,Demon Bait,8,32
-23,Crystal parts,armour,Turtling,9,33
-23,Crystal parts,armour,Profane,8,33
-23,Crystal parts,armour,Enhanced Devoted,5,15
-117,Strong components,weapon,Committed,12,44
-117,Strong components,weapon,Fatiguing,12,45
-117,Strong components,tool,Committed,12,44
-117,Strong components,tool,Fatiguing,12,45
-117,Strong components,armour,Committed,12,44
-117,Strong components,armour,Fatiguing,12,45
-117,Strong components,armour,Absorbative,9,33
-117,Strong components,armour,Enhanced Devoted,9,32
-102,Powerful components,weapon,Genocidal,9,33
-102,Powerful components,weapon,Trophy-taker's,12,44
-102,Powerful components,weapon,Blunted,12,45
-102,Powerful components,armour,Genocidal,9,33
-102,Powerful components,armour,Trophy-taker's,12,44
-102,Powerful components,armour,Bulwark,12,40
-148,Avernic components,weapon,Lunging,44,8
-146,Shifting components,weapon,Efficient,44,8
-146,Shifting components,weapon,Ultimatums,45,8
-146,Shifting components,tool,Efficient,44,8
-146,Shifting components,tool,Rapid,25,28
-146,Shifting components,armour,Efficient,44,8
-146,Shifting components,armour,Ultimatums,45,8
-6,Organic parts,weapon,Talking,7,27
-6,Organic parts,weapon,Invigorating,5,13
-6,Organic parts,weapon,Inaccurate,8,33
-6,Organic parts,weapon,Mediocrity,8,32
-6,Organic parts,tool,Talking,7,27
-6,Organic parts,tool,Pyromaniac,7,27
-6,Organic parts,armour,Talking,7,27
-6,Organic parts,armour,Invigorating,5,13
-6,Organic parts,armour,Brief Respite,5,15
-116,Dextrous components,weapon,Demon Slayer,9,33
-116,Dextrous components,weapon,Dragon Bait,12,45
-116,Dextrous components,weapon,Mobile,12,44
-116,Dextrous components,tool,Polishing,12,44
-116,Dextrous components,tool,Butterfingers,9,33
-116,Dextrous components,armour,Demon Slayer,9,33
-116,Dextrous components,armour,Dragon Bait,12,45
-116,Dextrous components,armour,Mobile,12,44
-116,Dextrous components,armour,Reflexes,12,40
-152,Faceted components,armour,Crystal Shield,39,9
-152,Faceted components,armour,Enhanced Devoted,45,8
-140,Pestiferous components,armour,Venomblood,44,8
-115,Variable components,weapon,Trophy-taker's,12,44
-115,Variable components,weapon,Demon Bait,12,45
-115,Variable components,weapon,Clear Headed,12,40
-115,Variable components,weapon,Enhanced Efficient,9,32
-115,Variable components,tool,Cheapskate,12,40
-115,Variable components,tool,Enhanced Efficient,9,32
-115,Variable components,armour,Trophy-taker's,12,44
-115,Variable components,armour,Demon Bait,12,45
-115,Variable components,armour,Clear Headed,12,40
-115,Variable components,armour,Enhanced Efficient,9,32
-8,Stave parts,weapon,Glow Worm,5,15
-8,Stave parts,weapon,Committed,7,28
-8,Stave parts,weapon,Fatiguing,8,32
-8,Stave parts,weapon,Undead Bait,8,33
-8,Stave parts,weapon,Energising,7,27
-8,Stave parts,tool,Glow Worm,5,15
-8,Stave parts,tool,Committed,7,28
-8,Stave parts,tool,Fatiguing,8,32
-8,Stave parts,tool,Rapid,7,25
-8,Stave parts,tool,Prosper,5,5
-8,Stave parts,armour,Glow Worm,5,15
-8,Stave parts,armour,Committed,7,28
-8,Stave parts,armour,Fatiguing,8,32
-8,Stave parts,armour,Undead Bait,8,33
-8,Stave parts,armour,Energising,7,27
-133,Zaros components,weapon,Impatient,44,8
-133,Zaros components,tool,Imp Souled,20,25
-133,Zaros components,armour,Impatient,44,8
-133,Zaros components,armour,Enhanced Devoted,39,9
-136,Silent components,tool,Honed,25,28
-136,Silent components,armour,Lucky,45,8
-10,Head parts,weapon,Talking,7,27
-10,Head parts,weapon,Clear Headed,5,15
-10,Head parts,weapon,Inaccurate,8,33
-10,Head parts,weapon,Mediocrity,8,32
-10,Head parts,tool,Talking,7,27
-10,Head parts,armour,Talking,7,27
-10,Head parts,armour,Clear Headed,5,15
-127,Explosive components,weapon,Crackling,48,5
-127,Explosive components,weapon,Ultimatums,40,8
-127,Explosive components,tool,Pyromaniac,25,28
-127,Explosive components,armour,Crackling,48,5
-127,Explosive components,armour,Ultimatums,40,8
-123,Undead components,weapon,Genocidal,40,8
-123,Undead components,weapon,Undead Slayer,48,5
-123,Undead components,tool,Breakdown,25,28
-123,Undead components,armour,Genocidal,40,8
-123,Undead components,armour,Undead Slayer,48,5
-106,Stunning components,weapon,Fatiguing,12,45
-106,Stunning components,weapon,Clear Headed,9,33
-106,Stunning components,weapon,Mediocrity,12,44
-106,Stunning components,weapon,Mysterious,12,40
-106,Stunning components,tool,Fatiguing,12,45
-106,Stunning components,tool,Mysterious,12,44
-106,Stunning components,tool,Confused,12,40
-106,Stunning components,armour,Fatiguing,12,45
-106,Stunning components,armour,Clear Headed,9,33
-106,Stunning components,armour,Mysterious,12,40
-151,Clockwork components,weapon,Enhanced Efficient,45,8
-151,Clockwork components,weapon,Flanking,25,28
-151,Clockwork components,tool,Enhanced Efficient,45,8
-151,Clockwork components,tool,Tinker,18,28
-151,Clockwork components,armour,Enhanced Efficient,45,8
-20,Spiked parts,weapon,Committed,7,28
-20,Spiked parts,weapon,Fatiguing,8,32
-20,Spiked parts,weapon,Genocidal,5,13
-20,Spiked parts,weapon,Trophy-taker's,7,27
-20,Spiked parts,weapon,Taunting,5,15
-20,Spiked parts,weapon,Junk Food,8,33
-20,Spiked parts,weapon,Flanking,5,15
-20,Spiked parts,tool,Committed,7,28
-20,Spiked parts,tool,Fatiguing,8,32
-20,Spiked parts,armour,Committed,7,28
-20,Spiked parts,armour,Fatiguing,8,32
-20,Spiked parts,armour,Genocidal,5,13
-20,Spiked parts,armour,Trophy-taker's,7,27
-20,Spiked parts,armour,Taunting,5,15
-20,Spiked parts,armour,Junk Food,8,33
-130,Zamorak components,weapon,Impatient,44,8
-130,Zamorak components,tool,Imp Souled,28,29
-130,Zamorak components,armour,Impatient,44,8
-130,Zamorak components,armour,Devoted,39,9
-145,Brassican components,weapon,Hallucinogenic,36,9
-145,Brassican components,weapon,Talking,45,8
-145,Brassican components,weapon,Brassican,49,8
-145,Brassican components,tool,Hallucinogenic,36,9
-145,Brassican components,tool,Talking,45,8
-145,Brassican components,tool,Brassican,49,8
-145,Brassican components,armour,Hallucinogenic,36,9
-145,Brassican components,armour,Talking,45,8
-145,Brassican components,armour,Brassican,49,8
-22,Padded parts,weapon,Demon Bait,8,32
-22,Padded parts,tool,Polishing,7,28
-22,Padded parts,tool,Butterfingers,7,27
-22,Padded parts,tool,Breakdown,7,27
-22,Padded parts,armour,Demon Bait,8,32
-22,Padded parts,armour,Absorbative,5,15
-22,Padded parts,armour,Profane,8,33
-137,Noxious components,weapon,Biting,40,8
-137,Noxious components,armour,Biting,40,8
-11,Connector parts,weapon,Scavenging,9,33
-11,Connector parts,weapon,Dragon Bait,8,32
-11,Connector parts,weapon,Undead Bait,8,33
-11,Connector parts,weapon,Mobile,7,28
-11,Connector parts,weapon,Precise,5,15
-11,Connector parts,armour,Scavenging,9,33
-11,Connector parts,armour,Dragon Bait,8,32
-11,Connector parts,armour,Undead Bait,8,33
-11,Connector parts,armour,Mobile,7,28
-122,Harnessed components,armour,Reflexes,45,8
-122,Harnessed components,armour,Preparation,44,8
-125,Dragonfire components,weapon,Dragon Slayer,44,8
-125,Dragonfire components,tool,Furnace,25,28
-125,Dragonfire components,armour,Dragon Slayer,44,8
-14,Delicate parts,weapon,Demon Bait,8,32
-14,Delicate parts,weapon,Junk Food,8,33
-14,Delicate parts,weapon,Equilibrium,5,13
-14,Delicate parts,weapon,Enhanced Efficient,5,15
-14,Delicate parts,tool,Butterfingers,8,32
-14,Delicate parts,tool,Charitable,7,27
-14,Delicate parts,tool,Enhanced Efficient,5,15
-14,Delicate parts,tool,Tinker,7,25
-14,Delicate parts,armour,Demon Bait,8,32
-14,Delicate parts,armour,Junk Food,8,33
-14,Delicate parts,armour,Lucky,5,15
-14,Delicate parts,armour,Enhanced Efficient,5,15
-138,Rumbling components,weapon,Equilibrium,40,8
-9,Tensile parts,weapon,Hoarding,5,15
-9,Tensile parts,weapon,Blunted,8,32
-9,Tensile parts,weapon,Mysterious,9,33
-9,Tensile parts,tool,Hoarding,5,15
-9,Tensile parts,tool,Mysterious,9,33
-9,Tensile parts,tool,Butterfingers,8,32
-9,Tensile parts,armour,Hoarding,5,15
-9,Tensile parts,armour,Profane,8,33
-9,Tensile parts,armour,Mysterious,9,33
-15,Crafted parts,weapon,Hallucinogenic,7,28
-15,Crafted parts,weapon,Fatiguing,8,32
-15,Crafted parts,weapon,Mediocrity,8,33
-15,Crafted parts,tool,Hallucinogenic,7,28
-15,Crafted parts,tool,Fatiguing,8,32
-15,Crafted parts,armour,Hallucinogenic,7,28
-15,Crafted parts,armour,Fatiguing,8,32
-15,Crafted parts,armour,Preparation,5,15
-19,Metallic parts,weapon,Antitheism,8,32
-19,Metallic parts,weapon,Mediocrity,8,33
-19,Metallic parts,tool,Antitheism,8,32
-19,Metallic parts,tool,Confused,7,27
-19,Metallic parts,armour,Antitheism,8,32
-19,Metallic parts,armour,Bulwark,9,33
-19,Metallic parts,armour,Preparation,5,15
+110,Precious components,weapon,Looting,9,33,0
+110,Precious components,weapon,Antitheism,12,45,0
+110,Precious components,weapon,Scavenging,12,40,0
+110,Precious components,weapon,Spendthrift,9,32,0
+110,Precious components,tool,Antitheism,12,45,0
+110,Precious components,armour,Looting,9,33,0
+110,Precious components,armour,Antitheism,12,45,0
+110,Precious components,armour,Scavenging,12,40,0
+100,Precise components,weapon,Cautious,12,44,0
+100,Precise components,weapon,Blunted,12,45,0
+100,Precise components,weapon,Equilibrium,9,33,0
+100,Precise components,weapon,Precise,9,32,0
+100,Precise components,weapon,Flanking,9,32,0
+100,Precise components,tool,Cautious,12,44,0
+100,Precise components,tool,Honed,9,32,0
+100,Precise components,armour,Cautious,12,44,0
+111,Pious components,weapon,Enlightened,9,32,0
+111,Pious components,weapon,Hoarding,9,33,0
+111,Pious components,weapon,Wise,12,40,0
+111,Pious components,weapon,Dragon Bait,12,45,0
+111,Pious components,weapon,Mediocrity,12,44,0
+111,Pious components,tool,Enlightened,9,32,0
+111,Pious components,tool,Hoarding,9,33,0
+111,Pious components,tool,Wise,12,40,0
+111,Pious components,tool,Charitable,12,44,0
+111,Pious components,armour,Enlightened,9,32,0
+111,Pious components,armour,Hoarding,9,33,0
+111,Pious components,armour,Wise,12,40,0
+111,Pious components,armour,Dragon Bait,12,45,0
+109,Evasive components,weapon,Cautious,12,44,0
+109,Evasive components,weapon,Blunted,12,45,0
+109,Evasive components,tool,Cautious,12,44,0
+109,Evasive components,tool,Prosper,12,8,0
+109,Evasive components,armour,Cautious,12,44,0
+109,Evasive components,armour,Turtling,12,40,0
+109,Evasive components,armour,Venomblood,9,33,0
+4,Blade parts,weapon,Antitheism,8,32,0
+4,Blade parts,weapon,Biting,5,15,0
+4,Blade parts,weapon,Junk Food,8,33,0
+4,Blade parts,tool,Antitheism,8,32,0
+4,Blade parts,tool,Honed,7,25,0
+4,Blade parts,armour,Antitheism,8,32,0
+4,Blade parts,armour,Biting,5,15,0
+4,Blade parts,armour,Junk Food,8,33,0
+5,Magic parts,weapon,Antitheism,8,32,0
+5,Magic parts,weapon,Undead Bait,8,33,0
+5,Magic parts,weapon,Crackling,9,33,0
+5,Magic parts,weapon,Ultimatums,5,15,0
+5,Magic parts,weapon,Energising,7,27,0
+5,Magic parts,weapon,Spendthrift,5,13,0
+5,Magic parts,tool,Antitheism,8,32,0
+5,Magic parts,tool,Honed,7,27,0
+5,Magic parts,armour,Antitheism,8,32,0
+5,Magic parts,armour,Undead Bait,8,33,0
+5,Magic parts,armour,Crackling,9,33,0
+5,Magic parts,armour,Ultimatums,5,15,0
+5,Magic parts,armour,Energising,7,27,0
+18,Deflecting parts,weapon,Shield Bashing,9,33,0
+18,Deflecting parts,weapon,Inaccurate,8,33,0
+18,Deflecting parts,weapon,Mediocrity,8,32,0
+18,Deflecting parts,tool,Imp Souled,7,27,0
+18,Deflecting parts,armour,Shield Bashing,9,33,0
+18,Deflecting parts,armour,Venomblood,5,15,0
+120,Direct components,weapon,Cautious,12,44,0
+120,Direct components,weapon,Biting,9,33,0
+120,Direct components,weapon,Blunted,12,45,0
+120,Direct components,tool,Cautious,12,44,0
+120,Direct components,tool,Charitable,12,40,0
+120,Direct components,tool,Pyromaniac,9,32,0
+120,Direct components,armour,Cautious,12,44,0
+120,Direct components,armour,Biting,9,33,0
+143,Ancient components,weapon,Demon Slayer,44,8,0
+143,Ancient components,tool,Prosper,50,50,0
+143,Ancient components,armour,Demon Slayer,44,8,0
+141,Refined components,weapon,Hoarding,11,25,0
+141,Refined components,weapon,Committed,11,25,0
+141,Refined components,weapon,Cautious,11,25,0
+141,Refined components,weapon,Dragon Bait,11,25,0
+141,Refined components,weapon,Demon Bait,11,25,0
+141,Refined components,weapon,Energising,11,25,0
+141,Refined components,weapon,Inaccurate,11,25,0
+141,Refined components,tool,Hoarding,11,25,0
+141,Refined components,tool,Committed,11,25,0
+141,Refined components,tool,Cautious,11,25,0
+141,Refined components,tool,Refined,11,25,0
+141,Refined components,armour,Hoarding,11,25,0
+141,Refined components,armour,Committed,11,25,0
+141,Refined components,armour,Cautious,11,25,0
+141,Refined components,armour,Dragon Bait,11,25,0
+141,Refined components,armour,Demon Bait,11,25,0
+141,Refined components,armour,Energising,11,25,0
+141,Refined components,armour,Brief Respite,11,25,0
+135,Resilient components,tool,Refined,25,28,0
+135,Resilient components,armour,Bulwark,45,8,0
+107,Enhancing components,weapon,Dragon Slayer,12,40,0
+107,Enhancing components,weapon,Invigorating,9,33,0
+107,Enhancing components,weapon,Energising,12,44,0
+107,Enhancing components,weapon,Inaccurate,12,45,0
+107,Enhancing components,tool,Cheapskate,12,45,0
+107,Enhancing components,tool,Refined,9,33,0
+107,Enhancing components,tool,Rapid,12,40,0
+107,Enhancing components,armour,Dragon Slayer,12,40,0
+107,Enhancing components,armour,Invigorating,9,33,0
+107,Enhancing components,armour,Energising,12,44,0
+149,Ilujankan components,weapon,Aftershock,40,8,0
+2,Simple parts,weapon,Looting,5,15,0
+2,Simple parts,weapon,Antitheism,8,32,0
+2,Simple parts,weapon,Hallucinogenic,7,28,0
+2,Simple parts,weapon,Talking,7,27,0
+2,Simple parts,tool,Antitheism,8,32,0
+2,Simple parts,tool,Hallucinogenic,7,28,0
+2,Simple parts,tool,Talking,7,27,0
+2,Simple parts,armour,Looting,5,15,0
+2,Simple parts,armour,Antitheism,8,32,0
+2,Simple parts,armour,Hallucinogenic,7,28,0
+2,Simple parts,armour,Talking,7,27,0
+2,Simple parts,armour,Profane,8,33,0
+134,Oceanic components,weapon,Invigorating,45,8,0
+134,Oceanic components,tool,Polishing,25,28,0
+134,Oceanic components,armour,Invigorating,45,8,0
+126,Fungal components,tool,Tinker,10,28,0
+126,Fungal components,armour,Absorbative,40,8,0
+105,Heavy components,weapon,Committed,12,44,0
+105,Heavy components,weapon,Demon Bait,12,45,0
+105,Heavy components,tool,Committed,12,44,0
+105,Heavy components,tool,Butterfingers,12,45,0
+105,Heavy components,tool,Breakdown,12,40,0
+105,Heavy components,armour,Committed,12,44,0
+105,Heavy components,armour,Demon Bait,12,45,0
+105,Heavy components,armour,Bulwark,12,40,0
+105,Heavy components,armour,Preparation,9,33,0
+131,Armadyl components,weapon,Precise,44,8,0
+131,Armadyl components,tool,Charitable,25,28,0
+131,Armadyl components,armour,Devoted,39,9,0
+17,Flexible parts,weapon,Cautious,7,27,0
+17,Flexible parts,weapon,Wise,9,33,0
+17,Flexible parts,weapon,Dragon Bait,8,32,0
+17,Flexible parts,weapon,Mobile,7,28,0
+17,Flexible parts,weapon,Clear Headed,5,15,0
+17,Flexible parts,tool,Cautious,7,27,0
+17,Flexible parts,tool,Wise,9,33,0
+17,Flexible parts,armour,Cautious,7,27,0
+17,Flexible parts,armour,Wise,9,33,0
+17,Flexible parts,armour,Dragon Bait,8,32,0
+17,Flexible parts,armour,Mobile,7,28,0
+17,Flexible parts,armour,Clear Headed,5,15,0
+17,Flexible parts,armour,Profane,8,33,0
+12,Cover parts,weapon,Shield Bashing,5,15,0
+12,Cover parts,tool,Confused,8,33,0
+12,Cover parts,tool,Furnace,7,25,0
+12,Cover parts,armour,Shield Bashing,5,15,0
+12,Cover parts,armour,Profane,8,33,0
+12,Cover parts,armour,Bulwark,9,33,0
+7,Spiritual parts,weapon,Enlightened,5,13,0
+7,Spiritual parts,weapon,Antitheism,8,32,0
+7,Spiritual parts,weapon,Hoarding,5,15,0
+7,Spiritual parts,weapon,Cautious,7,27,0
+7,Spiritual parts,weapon,Wise,9,33,0
+7,Spiritual parts,weapon,Inaccurate,8,33,0
+7,Spiritual parts,tool,Enlightened,5,13,0
+7,Spiritual parts,tool,Antitheism,8,32,0
+7,Spiritual parts,tool,Hoarding,5,15,0
+7,Spiritual parts,tool,Cautious,7,27,0
+7,Spiritual parts,tool,Wise,9,33,0
+7,Spiritual parts,armour,Enlightened,5,13,0
+7,Spiritual parts,armour,Antitheism,8,32,0
+7,Spiritual parts,armour,Hoarding,5,15,0
+7,Spiritual parts,armour,Cautious,7,27,0
+7,Spiritual parts,armour,Wise,9,33,0
+150,Cywir components,weapon,Planted Feet,20,20,0
+112,Light components,weapon,Glow Worm,12,40,0
+112,Light components,weapon,Hallucinogenic,12,44,0
+112,Light components,weapon,Inaccurate,12,45,0
+112,Light components,tool,Glow Worm,12,40,0
+112,Light components,tool,Hallucinogenic,12,44,0
+112,Light components,tool,Pyromaniac,12,40,0
+112,Light components,tool,Rapid,9,33,0
+112,Light components,armour,Glow Worm,12,40,0
+112,Light components,armour,Hallucinogenic,12,44,0
+112,Light components,armour,Lucky,9,33,0
+3,Base parts,weapon,Antitheism,8,32,0
+3,Base parts,weapon,Talking,7,27,0
+3,Base parts,weapon,Dragon Slayer,5,15,0
+3,Base parts,weapon,Inaccurate,8,33,0
+3,Base parts,tool,Antitheism,8,32,0
+3,Base parts,tool,Talking,7,27,0
+3,Base parts,tool,Charitable,7,25,0
+3,Base parts,armour,Antitheism,8,32,0
+3,Base parts,armour,Talking,7,27,0
+3,Base parts,armour,Dragon Slayer,5,15,0
+3,Base parts,armour,Turtling,9,33,0
+16,Plated parts,weapon,Committed,8,33,0
+16,Plated parts,weapon,Blunted,8,32,0
+16,Plated parts,tool,Committed,8,33,0
+16,Plated parts,armour,Committed,8,33,0
+16,Plated parts,armour,Absorbative,5,15,0
+118,Swift components,weapon,Invigorating,9,33,0
+118,Swift components,weapon,Shield Bashing,12,40,0
+118,Swift components,weapon,Blunted,12,45,0
+118,Swift components,tool,Imp Souled,12,40,0
+118,Swift components,armour,Invigorating,9,33,0
+118,Swift components,armour,Shield Bashing,12,40,0
+129,Saradomin components,weapon,Spendthrift,44,8,0
+129,Saradomin components,armour,Devoted,39,9,0
+13,Clear parts,weapon,Glow Worm,9,33,0
+13,Clear parts,weapon,Cautious,7,27,0
+13,Clear parts,weapon,Hallucinogenic,7,28,0
+13,Clear parts,weapon,Demon Slayer,5,15,0
+13,Clear parts,tool,Glow Worm,9,33,0
+13,Clear parts,tool,Cautious,7,27,0
+13,Clear parts,tool,Hallucinogenic,7,28,0
+13,Clear parts,armour,Glow Worm,9,33,0
+13,Clear parts,armour,Cautious,7,27,0
+13,Clear parts,armour,Hallucinogenic,7,28,0
+13,Clear parts,armour,Demon Slayer,5,15,0
+13,Clear parts,armour,Profane,8,33,0
+13,Clear parts,armour,Crystal Shield,5,15,0
+103,Healthy components,weapon,Committed,12,44,0
+103,Healthy components,weapon,Efficient,9,32,0
+103,Healthy components,weapon,Inaccurate,12,45,0
+103,Healthy components,tool,Committed,12,44,0
+103,Healthy components,tool,Efficient,9,32,0
+103,Healthy components,armour,Committed,12,44,0
+103,Healthy components,armour,Efficient,9,32,0
+103,Healthy components,armour,Venomblood,9,33,0
+21,Smooth parts,weapon,Scavenging,9,33,0
+21,Smooth parts,weapon,Undead Bait,8,33,0
+21,Smooth parts,weapon,Energising,7,27,0
+21,Smooth parts,weapon,Blunted,8,32,0
+21,Smooth parts,weapon,Equilibrium,5,13,0
+21,Smooth parts,tool,Cheapskate,8,33,0
+21,Smooth parts,tool,Refined,7,27,0
+21,Smooth parts,armour,Scavenging,9,33,0
+21,Smooth parts,armour,Undead Bait,8,33,0
+21,Smooth parts,armour,Energising,7,27,0
+21,Smooth parts,armour,Reflexes,5,15,0
+104,Knightly components,weapon,Taunting,44,8,0
+104,Knightly components,armour,Taunting,44,8,0
+101,Sharp components,weapon,Dragon Bait,12,45,0
+101,Sharp components,weapon,Taunting,9,33,0
+101,Sharp components,weapon,Flanking,9,32,0
+101,Sharp components,tool,Honed,12,40,0
+101,Sharp components,tool,Furnace,9,33,0
+101,Sharp components,armour,Dragon Bait,12,45,0
+101,Sharp components,armour,Taunting,9,33,0
+108,Protective components,weapon,Hoarding,9,33,0
+108,Protective components,weapon,Demon Bait,12,45,0
+108,Protective components,weapon,Shield Bashing,12,40,0
+108,Protective components,tool,Hoarding,9,33,0
+108,Protective components,tool,Polishing,12,40,0
+108,Protective components,armour,Hoarding,9,33,0
+108,Protective components,armour,Demon Bait,12,45,0
+108,Protective components,armour,Shield Bashing,12,40,0
+119,Imbued components,weapon,Crackling,12,40,0
+119,Imbued components,weapon,Ultimatums,9,33,0
+119,Imbued components,weapon,Junk Food,12,45,0
+119,Imbued components,weapon,Energising,12,44,0
+119,Imbued components,tool,Furnace,12,40,0
+119,Imbued components,armour,Crackling,12,40,0
+119,Imbued components,armour,Ultimatums,9,33,0
+119,Imbued components,armour,Junk Food,12,45,0
+119,Imbued components,armour,Energising,12,44,0
+114,Ethereal components,weapon,Antitheism,12,45,0
+114,Ethereal components,weapon,Wise,12,40,0
+114,Ethereal components,tool,Antitheism,12,45,0
+114,Ethereal components,tool,Wise,12,40,0
+114,Ethereal components,armour,Antitheism,12,45,0
+114,Ethereal components,armour,Wise,12,40,0
+114,Ethereal components,armour,Brief Respite,9,33,0
+121,Subtle components,weapon,Looting,9,33,0
+121,Subtle components,weapon,Demon Bait,12,45,0
+121,Subtle components,weapon,Mobile,12,44,0
+121,Subtle components,tool,Confused,12,45,0
+121,Subtle components,armour,Looting,9,33,0
+121,Subtle components,armour,Demon Bait,12,45,0
+121,Subtle components,armour,Mobile,12,44,0
+121,Subtle components,armour,Crystal Shield,12,40,0
+142,Fortunate components,weapon,Looting,13,40,0
+142,Fortunate components,weapon,Hoarding,13,40,0
+142,Fortunate components,weapon,Brassican,13,40,0
+142,Fortunate components,weapon,Spendthrift,13,40,0
+142,Fortunate components,tool,Hoarding,13,40,0
+142,Fortunate components,tool,Brassican,13,40,0
+142,Fortunate components,tool,Polishing,13,40,0
+142,Fortunate components,armour,Looting,13,40,0
+142,Fortunate components,armour,Hoarding,13,40,0
+142,Fortunate components,armour,Brassican,13,40,0
+142,Fortunate components,armour,Lucky,13,40,0
+132,Bandos components,weapon,Genocidal,44,8,0
+132,Bandos components,armour,Genocidal,44,8,0
+132,Bandos components,armour,Devoted,39,9,0
+147,Shadow components,weapon,Caroming,40,8,0
+113,Living components,weapon,Talking,12,44,0
+113,Living components,weapon,Undead Slayer,9,33,0
+113,Living components,tool,Talking,12,44,0
+113,Living components,armour,Talking,12,44,0
+113,Living components,armour,Undead Slayer,9,33,0
+113,Living components,armour,Profane,12,45,0
+144,Culinary components,weapon,Invigorating,39,9,0
+144,Culinary components,armour,Invigorating,39,9,0
+144,Culinary components,armour,Brief Respite,45,8,0
+124,Seren components,weapon,Enlightened,40,8,0
+124,Seren components,weapon,Wise,48,5,0
+124,Seren components,tool,Enlightened,40,8,0
+124,Seren components,tool,Wise,48,5,0
+124,Seren components,armour,Enlightened,40,8,0
+124,Seren components,armour,Wise,48,5,0
+139,Ascended components,weapon,Efficient,40,8,0
+139,Ascended components,weapon,Enhanced Efficient,20,25,0
+139,Ascended components,tool,Efficient,40,8,0
+139,Ascended components,tool,Enhanced Efficient,20,25,0
+139,Ascended components,armour,Efficient,40,8,0
+139,Ascended components,armour,Enhanced Efficient,20,25,0
+128,Corporeal components,armour,Brief Respite,40,8,0
+23,Crystal parts,weapon,Efficient,5,13,0
+23,Crystal parts,weapon,Trophy-taker's,7,27,0
+23,Crystal parts,weapon,Undead Slayer,5,15,0
+23,Crystal parts,weapon,Demon Bait,8,32,0
+23,Crystal parts,tool,Efficient,5,13,0
+23,Crystal parts,tool,Cheapskate,8,32,0
+23,Crystal parts,armour,Efficient,5,13,0
+23,Crystal parts,armour,Trophy-taker's,7,27,0
+23,Crystal parts,armour,Undead Slayer,5,15,0
+23,Crystal parts,armour,Demon Bait,8,32,0
+23,Crystal parts,armour,Turtling,9,33,0
+23,Crystal parts,armour,Profane,8,33,0
+23,Crystal parts,armour,Enhanced Devoted,5,15,0
+117,Strong components,weapon,Committed,12,44,0
+117,Strong components,weapon,Fatiguing,12,45,0
+117,Strong components,tool,Committed,12,44,0
+117,Strong components,tool,Fatiguing,12,45,0
+117,Strong components,armour,Committed,12,44,0
+117,Strong components,armour,Fatiguing,12,45,0
+117,Strong components,armour,Absorbative,9,33,0
+117,Strong components,armour,Enhanced Devoted,9,32,0
+102,Powerful components,weapon,Genocidal,9,33,0
+102,Powerful components,weapon,Trophy-taker's,12,44,0
+102,Powerful components,weapon,Blunted,12,45,0
+102,Powerful components,armour,Genocidal,9,33,0
+102,Powerful components,armour,Trophy-taker's,12,44,0
+102,Powerful components,armour,Bulwark,12,40,0
+148,Avernic components,weapon,Lunging,44,8,0
+146,Shifting components,weapon,Efficient,44,8,0
+146,Shifting components,weapon,Ultimatums,45,8,0
+146,Shifting components,tool,Efficient,44,8,0
+146,Shifting components,tool,Rapid,25,28,0
+146,Shifting components,armour,Efficient,44,8,0
+146,Shifting components,armour,Ultimatums,45,8,0
+6,Organic parts,weapon,Talking,7,27,0
+6,Organic parts,weapon,Invigorating,5,13,0
+6,Organic parts,weapon,Inaccurate,8,33,0
+6,Organic parts,weapon,Mediocrity,8,32,0
+6,Organic parts,tool,Talking,7,27,0
+6,Organic parts,tool,Pyromaniac,7,27,0
+6,Organic parts,armour,Talking,7,27,0
+6,Organic parts,armour,Invigorating,5,13,0
+6,Organic parts,armour,Brief Respite,5,15,0
+116,Dextrous components,weapon,Demon Slayer,9,33,0
+116,Dextrous components,weapon,Dragon Bait,12,45,0
+116,Dextrous components,weapon,Mobile,12,44,0
+116,Dextrous components,tool,Polishing,12,44,0
+116,Dextrous components,tool,Butterfingers,9,33,0
+116,Dextrous components,armour,Demon Slayer,9,33,0
+116,Dextrous components,armour,Dragon Bait,12,45,0
+116,Dextrous components,armour,Mobile,12,44,0
+116,Dextrous components,armour,Reflexes,12,40,0
+152,Faceted components,armour,Crystal Shield,39,9,0
+152,Faceted components,armour,Enhanced Devoted,45,8,0
+140,Pestiferous components,armour,Venomblood,44,8,0
+115,Variable components,weapon,Trophy-taker's,12,44,0
+115,Variable components,weapon,Demon Bait,12,45,0
+115,Variable components,weapon,Clear Headed,12,40,0
+115,Variable components,weapon,Enhanced Efficient,9,32,0
+115,Variable components,tool,Cheapskate,12,40,0
+115,Variable components,tool,Enhanced Efficient,9,32,0
+115,Variable components,armour,Trophy-taker's,12,44,0
+115,Variable components,armour,Demon Bait,12,45,0
+115,Variable components,armour,Clear Headed,12,40,0
+115,Variable components,armour,Enhanced Efficient,9,32,0
+8,Stave parts,weapon,Glow Worm,5,15,0
+8,Stave parts,weapon,Committed,7,28,0
+8,Stave parts,weapon,Fatiguing,8,32,0
+8,Stave parts,weapon,Undead Bait,8,33,0
+8,Stave parts,weapon,Energising,7,27,0
+8,Stave parts,tool,Glow Worm,5,15,0
+8,Stave parts,tool,Committed,7,28,0
+8,Stave parts,tool,Fatiguing,8,32,0
+8,Stave parts,tool,Rapid,7,25,0
+8,Stave parts,tool,Prosper,5,5,0
+8,Stave parts,armour,Glow Worm,5,15,0
+8,Stave parts,armour,Committed,7,28,0
+8,Stave parts,armour,Fatiguing,8,32,0
+8,Stave parts,armour,Undead Bait,8,33,0
+8,Stave parts,armour,Energising,7,27,0
+133,Zaros components,weapon,Impatient,44,8,0
+133,Zaros components,tool,Imp Souled,20,25,0
+133,Zaros components,armour,Impatient,44,8,0
+133,Zaros components,armour,Enhanced Devoted,39,9,0
+136,Silent components,tool,Honed,25,28,0
+136,Silent components,armour,Lucky,45,8,0
+10,Head parts,weapon,Talking,7,27,0
+10,Head parts,weapon,Clear Headed,5,15,0
+10,Head parts,weapon,Inaccurate,8,33,0
+10,Head parts,weapon,Mediocrity,8,32,0
+10,Head parts,tool,Talking,7,27,0
+10,Head parts,armour,Talking,7,27,0
+10,Head parts,armour,Clear Headed,5,15,0
+127,Explosive components,weapon,Crackling,48,5,0
+127,Explosive components,weapon,Ultimatums,40,8,0
+127,Explosive components,tool,Pyromaniac,25,28,0
+127,Explosive components,armour,Crackling,48,5,0
+127,Explosive components,armour,Ultimatums,40,8,0
+123,Undead components,weapon,Genocidal,40,8,0
+123,Undead components,weapon,Undead Slayer,48,5,0
+123,Undead components,tool,Breakdown,25,28,0
+123,Undead components,armour,Genocidal,40,8,0
+123,Undead components,armour,Undead Slayer,48,5,0
+106,Stunning components,weapon,Fatiguing,12,45,0
+106,Stunning components,weapon,Clear Headed,9,33,0
+106,Stunning components,weapon,Mediocrity,12,44,0
+106,Stunning components,weapon,Mysterious,12,40,0
+106,Stunning components,tool,Fatiguing,12,45,0
+106,Stunning components,tool,Mysterious,12,44,0
+106,Stunning components,tool,Confused,12,40,0
+106,Stunning components,armour,Fatiguing,12,45,0
+106,Stunning components,armour,Clear Headed,9,33,0
+106,Stunning components,armour,Mysterious,12,40,0
+151,Clockwork components,weapon,Enhanced Efficient,45,8,0
+151,Clockwork components,weapon,Flanking,25,28,0
+151,Clockwork components,tool,Enhanced Efficient,45,8,0
+151,Clockwork components,tool,Tinker,18,28,0
+151,Clockwork components,armour,Enhanced Efficient,45,8,0
+20,Spiked parts,weapon,Committed,7,28,0
+20,Spiked parts,weapon,Fatiguing,8,32,0
+20,Spiked parts,weapon,Genocidal,5,13,0
+20,Spiked parts,weapon,Trophy-taker's,7,27,0
+20,Spiked parts,weapon,Taunting,5,15,0
+20,Spiked parts,weapon,Junk Food,8,33,0
+20,Spiked parts,weapon,Flanking,5,15,0
+20,Spiked parts,tool,Committed,7,28,0
+20,Spiked parts,tool,Fatiguing,8,32,0
+20,Spiked parts,armour,Committed,7,28,0
+20,Spiked parts,armour,Fatiguing,8,32,0
+20,Spiked parts,armour,Genocidal,5,13,0
+20,Spiked parts,armour,Trophy-taker's,7,27,0
+20,Spiked parts,armour,Taunting,5,15,0
+20,Spiked parts,armour,Junk Food,8,33,0
+130,Zamorak components,weapon,Impatient,44,8,0
+130,Zamorak components,tool,Imp Souled,28,29,0
+130,Zamorak components,armour,Impatient,44,8,0
+130,Zamorak components,armour,Devoted,39,9,0
+145,Brassican components,weapon,Hallucinogenic,36,9,0
+145,Brassican components,weapon,Talking,45,8,0
+145,Brassican components,weapon,Brassican,49,8,0
+145,Brassican components,tool,Hallucinogenic,36,9,0
+145,Brassican components,tool,Talking,45,8,0
+145,Brassican components,tool,Brassican,49,8,0
+145,Brassican components,armour,Hallucinogenic,36,9,0
+145,Brassican components,armour,Talking,45,8,0
+145,Brassican components,armour,Brassican,49,8,0
+22,Padded parts,weapon,Demon Bait,8,32,0
+22,Padded parts,tool,Polishing,7,28,0
+22,Padded parts,tool,Butterfingers,7,27,0
+22,Padded parts,tool,Breakdown,7,27,0
+22,Padded parts,armour,Demon Bait,8,32,0
+22,Padded parts,armour,Absorbative,5,15,0
+22,Padded parts,armour,Profane,8,33,0
+137,Noxious components,weapon,Biting,40,8,0
+137,Noxious components,armour,Biting,40,8,0
+11,Connector parts,weapon,Scavenging,9,33,0
+11,Connector parts,weapon,Dragon Bait,8,32,0
+11,Connector parts,weapon,Undead Bait,8,33,0
+11,Connector parts,weapon,Mobile,7,28,0
+11,Connector parts,weapon,Precise,5,15,0
+11,Connector parts,armour,Scavenging,9,33,0
+11,Connector parts,armour,Dragon Bait,8,32,0
+11,Connector parts,armour,Undead Bait,8,33,0
+11,Connector parts,armour,Mobile,7,28,0
+122,Harnessed components,armour,Reflexes,45,8,0
+122,Harnessed components,armour,Preparation,44,8,0
+125,Dragonfire components,weapon,Dragon Slayer,44,8,0
+125,Dragonfire components,tool,Furnace,25,28,0
+125,Dragonfire components,armour,Dragon Slayer,44,8,0
+14,Delicate parts,weapon,Demon Bait,8,32,0
+14,Delicate parts,weapon,Junk Food,8,33,0
+14,Delicate parts,weapon,Equilibrium,5,13,0
+14,Delicate parts,weapon,Enhanced Efficient,5,15,0
+14,Delicate parts,tool,Butterfingers,8,32,0
+14,Delicate parts,tool,Charitable,7,27,0
+14,Delicate parts,tool,Enhanced Efficient,5,15,0
+14,Delicate parts,tool,Tinker,7,25,0
+14,Delicate parts,armour,Demon Bait,8,32,0
+14,Delicate parts,armour,Junk Food,8,33,0
+14,Delicate parts,armour,Lucky,5,15,0
+14,Delicate parts,armour,Enhanced Efficient,5,15,0
+138,Rumbling components,weapon,Equilibrium,40,8,0
+9,Tensile parts,weapon,Hoarding,5,15,0
+9,Tensile parts,weapon,Blunted,8,32,0
+9,Tensile parts,weapon,Mysterious,9,33,0
+9,Tensile parts,tool,Hoarding,5,15,0
+9,Tensile parts,tool,Mysterious,9,33,0
+9,Tensile parts,tool,Butterfingers,8,32,0
+9,Tensile parts,armour,Hoarding,5,15,0
+9,Tensile parts,armour,Profane,8,33,0
+9,Tensile parts,armour,Mysterious,9,33,0
+15,Crafted parts,weapon,Hallucinogenic,7,28,0
+15,Crafted parts,weapon,Fatiguing,8,32,0
+15,Crafted parts,weapon,Mediocrity,8,33,0
+15,Crafted parts,tool,Hallucinogenic,7,28,0
+15,Crafted parts,tool,Fatiguing,8,32,0
+15,Crafted parts,armour,Hallucinogenic,7,28,0
+15,Crafted parts,armour,Fatiguing,8,32,0
+15,Crafted parts,armour,Preparation,5,15,0
+19,Metallic parts,weapon,Antitheism,8,32,0
+19,Metallic parts,weapon,Mediocrity,8,33,0
+19,Metallic parts,tool,Antitheism,8,32,0
+19,Metallic parts,tool,Confused,7,27,0
+19,Metallic parts,armour,Antitheism,8,32,0
+19,Metallic parts,armour,Bulwark,9,33,0
+19,Metallic parts,armour,Preparation,5,15,0
