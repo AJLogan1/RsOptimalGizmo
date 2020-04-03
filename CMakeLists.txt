@@ -21,7 +21,7 @@ find_package(Trantor REQUIRED)
 set(RS_SOURCES
         rs/OptimalGizmo.cpp
         rs/InventionData.cpp
-        rs/InventionCalc.cpp)
+        rs/InventionCalc.cpp rs/Gizmo.cpp rs/Gizmo.h)
 
 
 # Server
