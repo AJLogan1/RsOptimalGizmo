@@ -5,40 +5,74 @@
 #ifndef RSPERKS_GIZMO_H
 #define RSPERKS_GIZMO_H
 
+
+#include "InventionTypes.h"
+#include "Component.h"
+#include "Perk.h"
+#include "Probability.h"
 #include <array>
+#include <vector>
 
-namespace rs {
-    enum EquipmentType {
-        WEAPON, TOOL, ARMOUR
-    };
-    enum GizmoType {
-        STANDARD, ANCIENT
-    };
 
-    size_t slotsForType(GizmoType type) {
-        switch (type) {
-            case STANDARD:
-                return 5;
-            case ANCIENT:
-                return 9;
-        }
-    }
+// Gizmo's generate pairs of perks.
+struct GizmoResult {
+    GeneratedPerk first;
+    GeneratedPerk second;
 
-    class Gizmo {
-    public:
-        Gizmo() = delete;
+    GizmoResult(GeneratedPerk first, GeneratedPerk second);
 
-//        Gizmo(EquipmentType equipmentType, std::vector<uint8_t> ids);
+    bool operator==(const GizmoResult &other) const;
+};
 
-//        Gizmo(EquipmentType equipmentType, std::array<uint8_t, 5> ids);
+struct GizmoResultHash {
+    std::size_t operator()(const GizmoResult &result) const;
+};
 
-//        Gizmo(EquipmentType equipmentType, std::array<uint8_t, 9> ids);
+std::ostream &operator<<(std::ostream &strm, const GizmoResult &gizmo_result);
 
-        Gizmo(EquipmentType equipmentType, GizmoType gizmoType, std::vector<uint8_t> ids);
+// We generate gizmo result probabilities.
+struct GizmoResultProbability {
+    GizmoResult result;
+    probability_t probability;
+};
 
-    private:
-        std::array<uint8_t, 9> components;
-    };
-}
+std::ostream &operator<<(std::ostream &strm, const GizmoResultProbability &gizmo_result_probability);
+
+// Gizmos can produce a series of possible results with probabilities.
+typedef std::vector<GizmoResultProbability> GizmoResultProbabilityList;
+
+class Gizmo {
+public:
+    Gizmo() = delete;
+
+    Gizmo(EquipmentType equipment_type, GizmoType gizmo_type, std::vector<Component> components);
+
+    std::array<Component, 9>::const_iterator begin() const;
+
+    std::array<Component, 9>::const_iterator end() const;
+
+    GizmoResult rollForPerks() const;
+
+    GizmoResultProbabilityList perkProbabilities(level_t invention_level) const;
+
+private:
+    EquipmentType equipment_type_;
+    GizmoType gizmo_type_;
+    std::array<Component, 9> components_;
+
+    std::vector<perk_id_t> perkInsertionOrder() const;
+
+    std::vector<CDF> perkRollCdf() const;
+
+    std::vector<std::vector<std::pair<rank_t, probability_t>>> perkRankProbabilities() const;
+
+    std::vector<std::pair<std::vector<GeneratedPerk>, probability_t>> perkCombinationProbabilities() const;
+
+    GizmoResultProbabilityList gizmoResultProbabilities(level_t invention_level,
+                                                        bool include_no_effect = false) const;
+};
+
+std::ostream &operator<<(std::ostream &strm, const Gizmo &gizmo);
+
 
 #endif //RSPERKS_GIZMO_H

@@ -3,7 +3,8 @@ project(rsperks)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Ofast -ffast-math")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Ofast -ffast-math -march=native")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 if (USE_OPENMP)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -qopenmp")
 endif ()
@@ -19,11 +20,14 @@ find_package(Trantor REQUIRED)
 
 
 set(RS_SOURCES
-        rs/OptimalGizmo.cpp
-        rs/InventionData.cpp
-        rs/InventionCalc.cpp rs/Gizmo.cpp rs/Gizmo.h)
+        rs/Component.h rs/Component.cpp
+        rs/Perk.h rs/Perk.cpp
+        rs/Probability.h
+        rs/Gizmo.cpp rs/Gizmo.h)
 
 
 # Server
-add_executable(optimal_gizmo_server optimal_gizmo_server.cpp ${RS_SOURCES})
-target_link_libraries(optimal_gizmo_server Drogon::Drogon)
+#add_executable(optimal_gizmo_server optimal_gizmo_server.cpp ${RS_SOURCES})
+#target_link_libraries(optimal_gizmo_server Drogon::Drogon)
+
+add_executable(test cmd/test.cpp ${RS_SOURCES})
