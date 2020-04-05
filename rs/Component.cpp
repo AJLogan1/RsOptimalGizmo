@@ -39,6 +39,18 @@ Component Component::get(std::string name) {
 }
 
 size_t Component::registerComponents(std::string filename) {
+    // Register the empty component, if it has not been already.
+    if (!components_by_id_.count(empty_component_id)) {
+        components_by_id_.insert({empty_component_id, Component::empty});
+        components_by_name_.insert({"Empty", Component::empty});
+        component_ancient_status_.insert({empty_component_id, false});
+        component_names_.insert({empty_component_id, "Empty"});
+        component_perk_contributions_[WEAPON].insert({empty_component_id, {}});
+        component_perk_contributions_[TOOL].insert({empty_component_id, {}});
+        component_perk_contributions_[ARMOUR].insert({empty_component_id, {}});
+        component_costs_.insert({empty_component_id, 0});
+    }
+
     std::ifstream comp_data_file;
     comp_data_file.open(filename);
     if (!comp_data_file) {

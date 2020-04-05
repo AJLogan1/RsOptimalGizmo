@@ -55,10 +55,15 @@ public:
 
     GizmoResultProbabilityList perkProbabilities(level_t invention_level) const;
 
+    GizmoResultProbabilityList targetPerkProbabilities(level_t invention_level,
+                                                       GizmoResult target,
+                                                       bool exact_target = true) const;
+
 private:
     EquipmentType equipment_type_;
     GizmoType gizmo_type_;
     std::array<Component, 9> components_;
+    std::vector<perk_id_t> insertion_order_;
 
     std::vector<perk_id_t> perkInsertionOrder() const;
 
@@ -68,8 +73,14 @@ private:
 
     std::vector<std::pair<std::vector<GeneratedPerk>, probability_t>> perkCombinationProbabilities() const;
 
+    std::vector<std::pair<std::vector<GeneratedPerk>, probability_t>>
+    perkCombinationProbabilities(GizmoResult target, bool exact = true) const;
+
     GizmoResultProbabilityList gizmoResultProbabilities(level_t invention_level,
-                                                        bool include_no_effect = false) const;
+                                                        bool include_no_effect = false,
+                                                        GizmoResult target = {{Perk::no_effect, 0},
+                                                                              {Perk::no_effect, 0}},
+                                                        bool exact_target = true) const;
 };
 
 std::ostream &operator<<(std::ostream &strm, const Gizmo &gizmo);
