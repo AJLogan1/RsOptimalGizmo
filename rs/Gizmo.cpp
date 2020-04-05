@@ -13,7 +13,7 @@ GizmoResult::GizmoResult(GeneratedPerk first, GeneratedPerk second) {
     if (second.rank == 0) {
         second.perk = Perk::no_effect;
     }
-    if (second.perk.id == no_effect_id || first.perk.id < second.perk.id) {
+    if (first.rank > second.rank || (first.rank == second.rank && first.perk.id > second.perk.id)) {
         this->first = first;
         this->second = second;
     } else {
