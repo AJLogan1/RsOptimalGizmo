@@ -7,18 +7,12 @@
 #include <bitset>
 
 GizmoResult::GizmoResult(GeneratedPerk first, GeneratedPerk second) {
-//    if (first.perk.twoSlot()) {
-//        this->first = first;
-//        this->second = {Perk::no_effect, 0};
-//        return;
-//    }
-
-//    if (second.perk.twoSlot()) {
-//        this->first = {Perk::no_effect, 0};
-//        this->second = {Perk::no_effect, 0};
-//        return;
-//    }
-
+    if (first.rank == 0) {
+        first.perk = Perk::no_effect;
+    }
+    if (second.rank == 0) {
+        second.perk = Perk::no_effect;
+    }
     if (second.perk.id == no_effect_id || first.perk.id < second.perk.id) {
         this->first = first;
         this->second = second;
@@ -86,12 +80,14 @@ std::vector<perk_id_t> Gizmo::perkInsertionOrder() const {
 std::vector<CDF> Gizmo::perkRollCdf() const {
     std::vector<perk_id_t> insertion_order = perkInsertionOrder();
     std::unordered_map<perk_id_t, int> bases;
-    std::unordered_map<perk_id_t, std::vector<contribution_roll_t>> rolls;
+    std::unordered_map<perk_id_t, std::vector<int>> rolls;
     std::for_each(begin(), end(), [&](Component comp) {
         auto component_perks = comp.perkContributions(this->equipment_type_);
         std::for_each(component_perks.begin(), component_perks.end(), [&](PerkContribution contrib) {
-            bases[contrib.perk.id] += contrib.base;
-            rolls[contrib.perk.id].emplace_back(contrib.roll);
+            bases[contrib.perk.id] += (this->gizmo_type_ == ANCIENT && !comp.ancient()) ?
+                                      0.8 * contrib.base : contrib.base;
+            rolls[contrib.perk.id].emplace_back((this->gizmo_type_ == ANCIENT && !comp.ancient()) ?
+                                                0.8 * contrib.roll : contrib.roll);
         });
     });
 
@@ -220,71 +216,70 @@ GizmoResultProbabilityList Gizmo::gizmoResultProbabilities(level_t invention_lev
     std::unordered_map<GizmoResult, probability_t, GizmoResultHash> result_total_probabilities;
     auto perk_combination_probabilities = perkCombinationProbabilities();
     CDF budget_cdf = inventionBudgetCdf(invention_level, this->gizmo_type_ == ANCIENT);
+    GeneratedPerk no_effect_result = {Perk::no_effect, 0};
 
-    probability_t no_effect_chance = 1.0;
+    probability_t probability_sum = 0.0;
 
     // For each combination, sort it using modified quicksort and then calculate probabilities of the combination.
     for (const auto &combination : perk_combination_probabilities) {
         std::vector<GeneratedPerk> perks = combination.first;
         probability_t probability = combination.second;
 
-        rs::quicksort(perks.begin(), perks.end(), [](const GeneratedPerk &a) -> int { return a.cost(); });
-        perks.insert(perks.begin(), {Perk::no_effect});
+        rs::quicksort(perks.begin(), perks.end(),
+                      [](const GeneratedPerk &a) -> int { return static_cast<int>(a.cost()); });
+        perks.insert(perks.begin(), no_effect_result);
 
-        rank_cost_t prev_cost = 0;
-        GeneratedPerk no_effect_result = {Perk::no_effect, 0};
+        size_t prev_cost = budget_cdf.size() - 1;
         // Loop backwards through the sorted combinations to calculate probability of each occurring.
         for (size_t i = perks.size() - 1; i < perks.size(); --i) {
             if (perks[i].rank == 0) {
                 continue;
             }
 
-            bool first_perk_two_slot = perks[i].perk.twoSlot();
-
             for (size_t j = i - 1; j < i; --j) {
-                GizmoResult perk_pair = {
-                        perks[i],
-                        (first_perk_two_slot || perks[j].perk.twoSlot()) ? no_effect_result : perks[j]
-                };
+                GizmoResult perk_pair = {perks[i], perks[j]};
 
-                int combo_cost = perk_pair.first.cost() + perk_pair.second.cost();
-
-                if (combo_cost >= budget_cdf.size()) {
-                    // Cannot generate this combination (budget too low).
-                    continue;
-                }
+                size_t combo_cost = perk_pair.first.cost() + perk_pair.second.cost();
 
                 // Cannot possibly generate a combination which costs more than a previously generated one.
-                if (prev_cost != 0 && combo_cost >= prev_cost) {
+                // (Or is greater than our initial previous cost - the max invention budget.)
+                if (combo_cost >= prev_cost) {
                     continue;
                 }
 
-                probability_t combo_probability;
-                if (prev_cost == 0) {
-                    // Finding P(inv_budget <= combo_cost)
-                    combo_probability = 1.0 - budget_cdf[combo_cost];
-                } else {
-                    combo_probability = budget_cdf[prev_cost] - budget_cdf[combo_cost];
-                }
+                // Finding P(inv_budget <= combo_cost)
+                probability_t combo_probability = budget_cdf[prev_cost] - budget_cdf[combo_cost];
                 prev_cost = combo_cost;
 
                 if (combo_probability == 0) {
                     goto next_combination;
                 }
 
-                result_total_probabilities[perk_pair] += probability * combo_probability;
-                no_effect_chance -= probability * combo_probability;
+                // If either perk was a two-slot, set the other to nothing.
+                if (perk_pair.first.perk.twoSlot()) {
+                    perk_pair.second = no_effect_result;
+                }
+                if (perk_pair.second.perk.twoSlot()) {
+                    perk_pair.first = perk_pair.second;
+                    perk_pair.second = no_effect_result;
+                }
+
+                probability_t result_probability = probability * combo_probability;
+                result_total_probabilities[perk_pair] += result_probability;
+                probability_sum += result_probability;
             }
+            next_combination:
+            continue;
         }
-        next_combination:
-        continue;
     }
 
-    probability_t normalisation_divisor = 1.0 - no_effect_chance;
-    if (include_no_effect) {
+    probability_t normalisation_divisor;
+    if (include_no_effect && probability_sum < 1.0) {
         result_total_probabilities[{{Perk::no_effect, 0},
-                                    {Perk::no_effect, 0}}] += no_effect_chance;
+                                    {Perk::no_effect, 0}}] += 1.0 - probability_sum;
         normalisation_divisor = 1.0;
+    } else {
+        normalisation_divisor = probability_sum;
     }
 
     // Convert results to vector.

@@ -43,6 +43,36 @@ namespace rs {
         const Iterator start = begin;
         innerQs(start, begin, end - 1, value_fn);
     }
+
+    template<typename A, typename F>
+    void safeQuicksort(int low, int high, std::vector<A> &arr, F value_fn) {
+        int pivot_index = (low + high) / 2;
+        A pivot_value = arr[pivot_index];
+        arr[pivot_index] = arr[high];
+        arr[high] = pivot_value;
+        int counter = low;
+        int loop_index = low;
+
+        while (loop_index < high) {
+            if (value_fn(arr[loop_index]) - value_fn(pivot_value) < (loop_index & 1)) {
+                A tmp = arr[loop_index];
+                arr[loop_index] = arr[counter];
+                arr[counter] = tmp;
+                counter++;
+            }
+            loop_index++;
+        }
+
+        arr[high] = arr[counter];
+        arr[counter] = pivot_value;
+
+        if (low < (counter - 1)) {
+            safeQuicksort(low, counter - 1, arr, value_fn);
+        }
+        if (counter + 1 < high) {
+            safeQuicksort(counter + 1, high, arr, value_fn);
+        }
+    }
 }
 
 #endif //RSPERKS_RSSORT_H
