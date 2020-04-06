@@ -6,13 +6,14 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 
 
 std::string Component::name() const {
     return Component::component_names_.at(this->id);
 }
 
-std::vector<PerkContribution> Component::perkContributions(EquipmentType type) const {
+std::vector<PerkContribution> &Component::perkContributions(EquipmentType type) const {
     return Component::component_perk_contributions_.at(type).at(this->id);
 }
 
@@ -30,6 +31,10 @@ int Component::totalPotentialContribution(EquipmentType equipment, perk_id_t per
     return found_contrib != component_contribution.end() ? found_contrib->totalPotentialContribution() : 0;
 }
 
+const std::bitset<std::numeric_limits<perk_id_t>::max()> &Component::possiblePerkBitset(EquipmentType equipment) const {
+    return possible_perk_bitsets_[equipment].at(this->id);
+}
+
 Component Component::get(component_id_t comp_id) {
     return Component::components_by_id_.at(comp_id);
 }
@@ -38,9 +43,14 @@ Component Component::get(std::string name) {
     return Component::components_by_name_.at(name);
 }
 
+std::vector<Component> &Component::all() {
+    return all_;
+}
+
 size_t Component::registerComponents(std::string filename) {
     // Register the empty component, if it has not been already.
     if (!components_by_id_.count(empty_component_id)) {
+        all_.push_back(Component::empty);
         components_by_id_.insert({empty_component_id, Component::empty});
         components_by_name_.insert({"Empty", Component::empty});
         component_ancient_status_.insert({empty_component_id, false});
@@ -96,6 +106,7 @@ size_t Component::registerComponents(std::string filename) {
         if (!components_by_id_.count(component_id)) {
             // Not encountered this component before.
             Component new_comp = {component_id};
+            all_.push_back(new_comp);
             components_by_id_.insert({component_id, new_comp});
             components_by_name_.insert({component_name, new_comp});
             component_ancient_status_.insert({component_id, ancient});
@@ -105,6 +116,10 @@ size_t Component::registerComponents(std::string filename) {
             component_perk_contributions_[TOOL].insert({component_id, {}});
             component_perk_contributions_[ARMOUR].insert({component_id, {}});
 
+            possible_perk_bitsets_[WEAPON].insert({component_id, {}});
+            possible_perk_bitsets_[TOOL].insert({component_id, {}});
+            possible_perk_bitsets_[ARMOUR].insert({component_id, {}});
+
             // Note: Cost can be overridden later.
             component_costs_.insert({component_id, 0});
         }
@@ -113,6 +128,8 @@ size_t Component::registerComponents(std::string filename) {
         component_perk_contributions_[perk_equip_type].at(component_id).push_back({possible_perk,
                                                                                    perk_base,
                                                                                    perk_roll});
+        // Set bit in possible perk bitsets.
+        possible_perk_bitsets_[perk_equip_type].at(component_id).set(possible_perk.id);
     }
 
     return 0;
@@ -122,11 +139,15 @@ size_t Component::registerCosts(std::string filename) {
     return 0;
 }
 
+std::vector<Component> Component::all_;
+
 std::unordered_map<component_id_t, std::string> Component::component_names_;
 std::array<std::unordered_map<component_id_t, std::vector<PerkContribution>>, EquipmentType::SIZE>
         Component::component_perk_contributions_;
 std::unordered_map<component_id_t, size_t> Component::component_costs_;
 std::unordered_map<component_id_t, bool> Component::component_ancient_status_;
+std::array<std::unordered_map<component_id_t, std::bitset<std::numeric_limits<perk_id_t>::max()>>, EquipmentType::SIZE>
+        Component::possible_perk_bitsets_;
 
 std::unordered_map<component_id_t, Component> Component::components_by_id_;
 std::unordered_map<std::string, Component> Component::components_by_name_;

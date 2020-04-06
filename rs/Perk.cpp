@@ -11,41 +11,46 @@ std::string Perk::name() const {
     return Perk::perk_names_.at(this->id);
 }
 
-std::vector<Rank> Perk::ranks() const {
-    return Perk::perk_ranks_.at(this->id);
+rank_list_t &Perk::ranks() const {
+    return Perk::perk_ranks_[this->id];
 }
 
 bool Perk::twoSlot() const {
-    return Perk::perk_is_two_slot_.at(this->id);
+    return Perk::perk_is_two_slot_[this->id];
 }
 
 Rank Perk::rank(rank_t rank) const {
-    if (rank == 0) {
-        return {0, 0, 0, false};
-    }
-    return ranks().at(rank - 1);
+    return ranks().at(rank);
+}
+
+bool Perk::operator==(const Perk &other) const {
+    return this->id == other.id;
+}
+
+std::vector<Perk> &Perk::all() {
+    return all_;
 }
 
 Perk Perk::get(perk_id_t id) {
-    return Perk::perks_by_id_.at(id);
+    return Perk::fast_perks_by_id_.at(id);
 }
 
 Perk Perk::get(std::string name) {
     return Perk::perks_by_name_.at(name);
 }
 
-std::vector<Rank> Perk::ranks(perk_id_t perk_id) {
-    return Perk::get(perk_id).ranks();
+rank_list_t &Perk::ranks(perk_id_t perk_id) {
+    return perk_ranks_[perk_id];
 }
 
 size_t Perk::registerPerks(std::string filename) {
     // Register no effect if it hasn't been already.
     if (!perks_by_id_.count(no_effect_id)) {
+        all_.push_back(no_effect);
         perks_by_id_.insert({no_effect_id, no_effect});
         perks_by_name_.insert({"No Effect", no_effect});
         perk_names_.insert({no_effect_id, "No Effect"});
-        perk_is_two_slot_.insert({no_effect_id, false});
-        perk_ranks_.insert({no_effect_id, {}});
+        perk_is_two_slot_[no_effect_id] = false;
     }
 
     std::ifstream perk_data_file;
@@ -88,30 +93,35 @@ size_t Perk::registerPerks(std::string filename) {
         // Create objects and add to relevant stores.
         if (!perks_by_id_.count(perk_id)) {
             // Not encountered this perk before.
-            Perk new_perk = {perk_id};
+            Perk new_perk = {perk_id, perk_rank};
+            all_.push_back(new_perk);
             perks_by_id_.insert({perk_id, new_perk});
+            fast_perks_by_id_[perk_id] = new_perk;
             perks_by_name_.insert({perk_name, new_perk});
             perk_names_.insert({perk_id, perk_name});
-            if (perk_name == "Enhanced Devoted" || perk_name == "Enhanced Efficient") {
-                perk_is_two_slot_.insert({perk_id, true});
-            } else {
-                perk_is_two_slot_.insert({perk_id, false});
-            }
-            perk_ranks_.insert({perk_id, {}});
+            perk_is_two_slot_[perk_id] = (perk_name == "Enhanced Devoted" || perk_name == "Enhanced Efficient");
+            perk_ranks_[perk_id][0] = {0, 0, 0, false};
         }
 
         // Add rank information.
-        perk_ranks_.at(perk_id).push_back({perk_rank, perk_cost, perk_threshold, ancient});
+        perk_ranks_[perk_id][perk_rank] = {perk_rank, perk_cost, perk_threshold, ancient};
+        rank_t max_rank = std::max(fast_perks_by_id_[perk_id].max_rank, perk_rank);
+        fast_perks_by_id_[perk_id].max_rank = max_rank;
+        perks_by_id_[perk_id].max_rank = max_rank;
+        perks_by_name_[perk_name].max_rank = max_rank;
     }
 
     return 0;
 }
 
+std::vector<Perk> Perk::all_;
+
 std::unordered_map<perk_id_t, std::string> Perk::perk_names_;
-std::unordered_map<perk_id_t, std::vector<Rank>> Perk::perk_ranks_;
-std::unordered_map<perk_id_t, bool> Perk::perk_is_two_slot_;
+std::array<rank_list_t, std::numeric_limits<perk_id_t>::max()> Perk::perk_ranks_;
+std::array<bool, std::numeric_limits<perk_id_t>::max()> Perk::perk_is_two_slot_;
 
 std::unordered_map<perk_id_t, Perk> Perk::perks_by_id_;
+std::array<Perk, std::numeric_limits<perk_id_t>::max()> Perk::fast_perks_by_id_;
 std::unordered_map<std::string, Perk> Perk::perks_by_name_;
 
 std::ostream &operator<<(std::ostream &strm, const Perk &perk) {
@@ -126,6 +136,10 @@ std::ostream &operator<<(std::ostream &strm, const GeneratedPerk &generated_perk
     return strm;
 }
 
-rank_cost_t GeneratedPerk::cost() const {
+GeneratedPerk::GeneratedPerk(Perk p, rank_t r) : perk(p), rank(r) {
+    this->cost = getCost();
+}
+
+rank_cost_t GeneratedPerk::getCost() const {
     return this->perk.rank(this->rank).cost;
 }

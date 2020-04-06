@@ -7,6 +7,7 @@
 
 
 #include <cstdint>
+#include <bitset>
 #include <string>
 #include <vector>
 #include <array>
@@ -30,15 +31,20 @@ struct Component {
 
     [[nodiscard]] std::string name() const;
 
-    [[nodiscard]] std::vector<PerkContribution> perkContributions(EquipmentType type) const;
+    [[nodiscard]] std::vector<PerkContribution> &perkContributions(EquipmentType type) const;
 
     [[nodiscard]] bool ancient() const;
 
     [[nodiscard]] int totalPotentialContribution(EquipmentType equipment, perk_id_t perk) const;
 
+    [[nodiscard]] const std::bitset<std::numeric_limits<perk_id_t>::max()> &
+    possiblePerkBitset(EquipmentType equipment) const;
+
     [[nodiscard]] static Component get(component_id_t comp_id);
 
     [[nodiscard]] static Component get(std::string name);
+
+    [[nodiscard]] static std::vector<Component> &all();
 
     static const Component empty;
 
@@ -47,11 +53,16 @@ struct Component {
     static size_t registerCosts(std::string filename);
 
 private:
+    static std::vector<Component> all_;
+
     static std::unordered_map<component_id_t, std::string> component_names_;
     static std::array<std::unordered_map<component_id_t, std::vector<PerkContribution>>, EquipmentType::SIZE>
             component_perk_contributions_;
     static std::unordered_map<component_id_t, size_t> component_costs_;
     static std::unordered_map<component_id_t, bool> component_ancient_status_;
+    static std::array<std::unordered_map<component_id_t, std::bitset<std::numeric_limits<perk_id_t>::max()>>,
+            EquipmentType::SIZE>
+            possible_perk_bitsets_;
 
     static std::unordered_map<component_id_t, Component> components_by_id_;
     static std::unordered_map<std::string, Component> components_by_name_;

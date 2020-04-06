@@ -5,8 +5,10 @@
 #include "Gizmo.h"
 #include "RSSort.h"
 #include <bitset>
+#include <iomanip>
+#include <cassert>
 
-GizmoResult::GizmoResult(GeneratedPerk first, GeneratedPerk second) {
+GizmoResult::GizmoResult(GeneratedPerk first, GeneratedPerk second) : first(first), second(second) {
     if (first.rank == 0) {
         first.perk = Perk::no_effect;
     }
@@ -45,7 +47,19 @@ Gizmo::Gizmo(EquipmentType equipment_type, GizmoType gizmo_type, std::vector<Com
     std::fill(last_specified, components_.end(), Component::empty);
 
     // Build insertion order.
-    insertion_order_ = perkInsertionOrder();
+    this->insertion_order_ = perkInsertionOrder();
+}
+
+EquipmentType Gizmo::equipmentType() const {
+    return this->equipment_type_;
+}
+
+GizmoType Gizmo::type() const {
+    return this->gizmo_type_;
+}
+
+const std::array<Component, 9> &Gizmo::components() const {
+    return this->components_;
 }
 
 std::array<Component, 9>::const_iterator Gizmo::begin() const {
@@ -67,19 +81,19 @@ GizmoResultProbabilityList Gizmo::perkProbabilities(level_t invention_level) con
 }
 
 GizmoResultProbabilityList Gizmo::targetPerkProbabilities(level_t invention_level,
-                                                          GizmoResult target,
+                                                          const GizmoResult &target,
                                                           bool exact_target) const {
-    return gizmoResultProbabilities(invention_level, true, target, exact_target);
+    return gizmoResultProbabilities(invention_level, false, target, exact_target);
 }
 
-std::vector<perk_id_t> Gizmo::perkInsertionOrder() const {
+std::vector<Perk> Gizmo::perkInsertionOrder() const {
     std::bitset<std::numeric_limits<perk_id_t>::max()> perk_set;
-    std::vector<perk_id_t> insertion_order;
-    std::for_each(begin(), end(), [&](Component comp) {
-        auto component_perks = comp.perkContributions(this->equipment_type_);
-        std::for_each(component_perks.begin(), component_perks.end(), [&](PerkContribution contrib) {
+    std::vector<Perk> insertion_order;
+    std::for_each(begin(), end(), [&](const Component &comp) {
+        auto &component_perks = comp.perkContributions(this->equipment_type_);
+        std::for_each(component_perks.begin(), component_perks.end(), [&](const PerkContribution &contrib) {
             if (!perk_set.test(contrib.perk.id)) {
-                insertion_order.emplace_back(contrib.perk.id);
+                insertion_order.push_back(Perk::get(contrib.perk.id));
                 perk_set.set(contrib.perk.id);
             }
         });
@@ -88,12 +102,11 @@ std::vector<perk_id_t> Gizmo::perkInsertionOrder() const {
 }
 
 std::vector<CDF> Gizmo::perkRollCdf() const {
-    std::vector<perk_id_t> insertion_order = this->insertion_order_;
-    std::unordered_map<perk_id_t, int> bases;
-    std::unordered_map<perk_id_t, std::vector<int>> rolls;
-    std::for_each(begin(), end(), [&](Component comp) {
-        auto component_perks = comp.perkContributions(this->equipment_type_);
-        std::for_each(component_perks.begin(), component_perks.end(), [&](PerkContribution contrib) {
+    std::array<int, std::numeric_limits<perk_id_t>::max()> bases{};
+    std::array<std::vector<int>, std::numeric_limits<perk_id_t>::max()> rolls{};
+    std::for_each(begin(), end(), [&](const Component &comp) {
+        auto &component_perks = comp.perkContributions(this->equipment_type_);
+        std::for_each(component_perks.begin(), component_perks.end(), [&](const PerkContribution &contrib) {
             bases[contrib.perk.id] += (this->gizmo_type_ == ANCIENT && !comp.ancient()) ?
                                       0.8 * contrib.base : contrib.base;
             rolls[contrib.perk.id].emplace_back((this->gizmo_type_ == ANCIENT && !comp.ancient()) ?
@@ -102,12 +115,13 @@ std::vector<CDF> Gizmo::perkRollCdf() const {
     });
 
     std::vector<CDF> cdfs;
+    cdfs.reserve(insertion_order_.size());
 
-    for (perk_id_t perk : insertion_order) {
-        CDF base_cdf = CDF(bases[perk], 0);
-        CDF perk_cdf = Cdf(rolls[perk]);
+    for (Perk perk : insertion_order_) {
+        CDF base_cdf = CDF(bases[perk.id], 0);
+        CDF perk_cdf = Cdf(rolls[perk.id]);
         base_cdf.insert(base_cdf.end(), perk_cdf.begin(), perk_cdf.end());
-        cdfs.push_back(base_cdf);
+        cdfs.emplace_back(std::move(base_cdf));
     }
 
     return cdfs;
@@ -115,17 +129,17 @@ std::vector<CDF> Gizmo::perkRollCdf() const {
 
 std::vector<std::vector<std::pair<rank_t, probability_t>>> Gizmo::perkRankProbabilities() const {
     std::vector<std::vector<std::pair<rank_t, probability_t>>> rank_probabilities;
-    std::vector<perk_id_t> insertion_order = this->insertion_order_;
+    std::vector<Perk> insertion_order = this->insertion_order_;
     std::vector<CDF> perk_contrib_cdf = perkRollCdf();
 
     for (size_t i = 0; i < insertion_order.size(); ++i) {
-        perk_id_t perk_id = insertion_order[i];
+        Perk perk = insertion_order[i];
         const CDF &perk_cdf = perk_contrib_cdf[i];
-        const std::vector<Rank> &ranks = Perk::ranks(perk_id);
+        const rank_list_t &ranks = perk.ranks();
         std::vector<std::pair<rank_t, probability_t>> perk_rank_probabilities;
 
         // Loop backwards through ranks.
-        for (size_t rank_i = ranks.size() - 1; rank_i < ranks.size(); --rank_i) {
+        for (size_t rank_i = perk.max_rank; rank_i > 0; --rank_i) {
             rank_threshold_t threshold = ranks[rank_i].threshold;
             // Is threshold greater or equal to the maximum possible generated contribution?
             if (threshold > perk_cdf.size() - 1 ||
@@ -138,7 +152,7 @@ std::vector<std::vector<std::pair<rank_t, probability_t>>> Gizmo::perkRankProbab
             // threshold.
             probability_t rank_prob;
             // Is this the first rank which is possible to generate?
-            if (rank_i == ranks.size() - 1 ||
+            if (rank_i == perk.max_rank ||
                 ranks[rank_i + 1].threshold > perk_cdf.size() - 1 ||
                 (this->gizmo_type_ != ANCIENT && ranks[rank_i + 1].ancient)) {
                 if (threshold > 0) {
@@ -167,14 +181,15 @@ std::vector<std::vector<std::pair<rank_t, probability_t>>> Gizmo::perkRankProbab
 
         // If the CDF at the minimum threshold is greater than zero, there is a chance we generate a zero-rank perk.
         // Add that probability now.
-        if (perk_cdf[ranks[0].threshold] > 0) {
-            if (ranks[0].threshold >= perk_cdf.size()) {
+        if (ranks[1].threshold >= perk_cdf.size() || perk_cdf[ranks[1].threshold] > 0) {
+            if (ranks[1].threshold >= perk_cdf.size()) {
                 perk_rank_probabilities.emplace_back(0, 1.0);
             } else {
-                perk_rank_probabilities.emplace_back(0, perk_cdf[ranks[0].threshold - 1]);
+                perk_rank_probabilities.emplace_back(0, perk_cdf[ranks[1].threshold - 1]);
             }
         }
 
+        assert(perk_rank_probabilities.size() != 0);
         rank_probabilities.emplace_back(perk_rank_probabilities);
     }
 
@@ -182,24 +197,29 @@ std::vector<std::vector<std::pair<rank_t, probability_t>>> Gizmo::perkRankProbab
 }
 
 std::vector<std::pair<std::vector<GeneratedPerk>, probability_t>> Gizmo::perkCombinationProbabilities() const {
-    std::vector<perk_id_t> insertion_order = this->insertion_order_;
     std::vector<std::vector<std::pair<rank_t, probability_t>>> perk_rank_probabilities = perkRankProbabilities();
 
     std::vector<std::pair<std::vector<GeneratedPerk>, probability_t>> perk_combinations;
-    perk_combinations.reserve(512);
+    perk_combinations.reserve(1024);
 
-    std::vector<size_t> indices(perk_rank_probabilities.size());
+    GeneratedPerk no_effect_result = {Perk::no_effect, 0};
+
+    std::vector<size_t> indices(perk_rank_probabilities.size(), 0);
     while (indices[0] < perk_rank_probabilities[0].size()) {
         probability_t combined_prob = 1.0;
         size_t i = 0;
-        std::vector<GeneratedPerk> combination(insertion_order.size());
-        for (i = 0; i < insertion_order.size(); ++i) {
+        std::vector<GeneratedPerk> combination;
+        combination.reserve(insertion_order_.size() + 1);
+        combination.emplace_back(no_effect_result);
+        for (i = 0; i < insertion_order_.size(); ++i) {
             rank_t rank = perk_rank_probabilities[i][indices[i]].first;
             probability_t rank_probability = perk_rank_probabilities[i][indices[i]].second;
             combined_prob *= rank_probability;
-            combination[i] = {{insertion_order[i]}, rank};
+            combination.emplace_back(insertion_order_[i], rank);
         }
-        perk_combinations.emplace_back(combination, combined_prob);
+        rs::safeQuicksort(1, combination.size() - 1, combination,
+                          [](const GeneratedPerk &a) -> int { return static_cast<int>(a.cost); });
+        perk_combinations.emplace_back(std::move(combination), combined_prob);
 
         // Increment indices.
         for (i = indices.size() - 1; i < indices.size(); --i) {
@@ -208,11 +228,9 @@ std::vector<std::pair<std::vector<GeneratedPerk>, probability_t>> Gizmo::perkCom
                 if (i == 0) {
                     break;
                 }
-
                 indices[i] = 0;
                 continue;
             }
-
             break;
         }
     }
@@ -220,28 +238,28 @@ std::vector<std::pair<std::vector<GeneratedPerk>, probability_t>> Gizmo::perkCom
     return perk_combinations;
 }
 
-std::vector<std::pair<std::vector<GeneratedPerk>, probability_t>>
-Gizmo::perkCombinationProbabilities(GizmoResult target, bool exact) const {
-    std::vector<perk_id_t> insertion_order = this->insertion_order_;
+[[maybe_unused]] std::vector<std::pair<std::vector<GeneratedPerk>, probability_t>>
+Gizmo::perkCombinationProbabilities(const GizmoResult &target, bool exact) const {
     std::vector<std::vector<std::pair<rank_t, probability_t>>> perk_rank_probabilities = perkRankProbabilities();
 
     std::vector<std::pair<std::vector<GeneratedPerk>, probability_t>> perk_combinations;
-    perk_combinations.reserve(512);
+    perk_combinations.reserve(1024);
 
     std::vector<size_t> indices(perk_rank_probabilities.size());
     while (indices[0] < perk_rank_probabilities[0].size()) {
         probability_t combined_prob = 1.0;
         size_t i = 0;
-        std::vector<GeneratedPerk> combination(insertion_order.size());
-        for (i = 0; i < insertion_order.size(); ++i) {
+        std::vector<GeneratedPerk> combination;
+        combination.reserve(insertion_order_.size());
+        for (i = 0; i < insertion_order_.size(); ++i) {
             rank_t rank = perk_rank_probabilities[i][indices[i]].first;
 
-            if (insertion_order[i] == target.first.perk.id) {
+            if (insertion_order_[i] == target.first.perk) {
                 if ((exact && rank != target.first.rank) || rank < target.first.rank) {
                     goto skip;
                 }
             }
-            if (insertion_order[i] == target.second.perk.id) {
+            if (insertion_order_[i] == target.second.perk) {
                 if ((exact && rank != target.second.rank) || rank < target.second.rank) {
                     goto skip;
                 }
@@ -249,9 +267,9 @@ Gizmo::perkCombinationProbabilities(GizmoResult target, bool exact) const {
 
             probability_t rank_probability = perk_rank_probabilities[i][indices[i]].second;
             combined_prob *= rank_probability;
-            combination[i] = {{insertion_order[i]}, rank};
+            combination.emplace_back(insertion_order_[i], rank);
         }
-        perk_combinations.emplace_back(combination, combined_prob);
+        perk_combinations.emplace_back(std::move(combination), combined_prob);
 
         // Increment indices.
         skip:
@@ -280,7 +298,7 @@ GizmoResultProbabilityList Gizmo::gizmoResultProbabilities(level_t invention_lev
                                                            bool exact_target) const {
     GizmoResultProbabilityList results;
     std::unordered_map<GizmoResult, probability_t, GizmoResultHash> result_total_probabilities;
-    auto perk_combination_probabilities = perkCombinationProbabilities(target, exact_target);
+    auto perk_combination_probabilities = perkCombinationProbabilities();
     CDF budget_cdf = inventionBudgetCdf(invention_level, this->gizmo_type_ == ANCIENT);
     GeneratedPerk no_effect_result = {Perk::no_effect, 0};
 
@@ -290,12 +308,8 @@ GizmoResultProbabilityList Gizmo::gizmoResultProbabilities(level_t invention_lev
 
     // For each combination, sort it using modified quicksort and then calculate probabilities of the combination.
     for (const auto &combination : perk_combination_probabilities) {
-        std::vector<GeneratedPerk> perks = combination.first;
+        const std::vector<GeneratedPerk> &perks = combination.first;
         probability_t probability = combination.second;
-
-        rs::quicksort(perks.begin(), perks.end(),
-                      [](const GeneratedPerk &a) -> int { return static_cast<int>(a.cost()); });
-        perks.insert(perks.begin(), no_effect_result);
 
         size_t prev_cost = budget_cdf.size() - 1;
         // Loop backwards through the sorted combinations to calculate probability of each occurring.
@@ -305,21 +319,7 @@ GizmoResultProbabilityList Gizmo::gizmoResultProbabilities(level_t invention_lev
             }
 
             for (size_t j = i - 1; j < i; --j) {
-                GizmoResult perk_pair = {perks[i], perks[j]};
-
-                size_t combo_cost = perk_pair.first.cost() + perk_pair.second.cost();
-
-                // Skip if not our target.
-                if (check_target) {
-                    if (perk_pair.first.perk.id != target.first.perk.id) {
-                        prev_cost = combo_cost;
-                        continue;
-                    }
-                    if (exact_target && perk_pair.second.perk.id != target.second.perk.id) {
-                        prev_cost = combo_cost;
-                        continue;
-                    }
-                }
+                size_t combo_cost = perks[i].cost + perks[j].cost;
 
                 // Cannot possibly generate a combination which costs more than a previously generated one.
                 // (Or is greater than our initial previous cost - the max invention budget.)
@@ -335,6 +335,8 @@ GizmoResultProbabilityList Gizmo::gizmoResultProbabilities(level_t invention_lev
                     goto next_combination;
                 }
 
+                GizmoResult perk_pair = {perks[i], perks[j]};
+
                 // If either perk was a two-slot, set the other to nothing.
                 if (perk_pair.first.perk.twoSlot()) {
                     perk_pair.second = no_effect_result;
@@ -345,7 +347,9 @@ GizmoResultProbabilityList Gizmo::gizmoResultProbabilities(level_t invention_lev
                 }
 
                 probability_t result_probability = probability * combo_probability;
-                result_total_probabilities[perk_pair] += result_probability;
+                if (!check_target || perk_pair == target) {
+                    result_total_probabilities[perk_pair] += result_probability;
+                }
                 probability_sum += result_probability;
             }
             next_combination:
@@ -354,9 +358,7 @@ GizmoResultProbabilityList Gizmo::gizmoResultProbabilities(level_t invention_lev
     }
 
     probability_t normalisation_divisor;
-    if (check_target) {
-        normalisation_divisor = 1.0;
-    } else if (include_no_effect && probability_sum < 1.0) {
+    if (include_no_effect && probability_sum < 1.0) {
         result_total_probabilities[{{Perk::no_effect, 0},
                                     {Perk::no_effect, 0}}] += 1.0 - probability_sum;
         normalisation_divisor = 1.0;
@@ -382,4 +384,21 @@ std::ostream &operator<<(std::ostream &strm, const GizmoResult &gizmo_result) {
 
 std::ostream &operator<<(std::ostream &strm, const GizmoResultProbability &gizmo_result_probability) {
     return strm << gizmo_result_probability.result << " -- " << gizmo_result_probability.probability;
+}
+
+std::ostream &operator<<(std::ostream &strm, const Gizmo &gizmo) {
+    strm << gizmo.type() << " " << gizmo.equipmentType() << " Gizmo:" << std::endl;
+    strm << std::setw(15) << "Middle: " << gizmo.components()[0] << std::endl;
+    strm << std::setw(15) << "Top: " << gizmo.components()[1] << std::endl;
+    strm << std::setw(15) << "Left: " << gizmo.components()[2] << std::endl;
+    strm << std::setw(15) << "Right: " << gizmo.components()[3] << std::endl;
+    strm << std::setw(15) << "Bottom: " << gizmo.components()[4];
+    if (gizmo.type() == ANCIENT) {
+        strm << std::endl << std::setw(15) << "Top Left: " << gizmo.components()[5] << std::endl;
+        strm << std::setw(15) << "Top Right: " << gizmo.components()[6] << std::endl;
+        strm << std::setw(15) << "Bottom Left: " << gizmo.components()[7] << std::endl;
+        strm << std::setw(15) << "Bottom Right: " << gizmo.components()[8];
+    }
+
+    return strm;
 }

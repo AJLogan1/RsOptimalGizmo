@@ -9,6 +9,7 @@
 #include <vector>
 #include <array>
 #include <numeric>
+#include <algorithm>
 
 typedef std::vector<probability_t> PDF;
 typedef std::vector<probability_t> CDF;

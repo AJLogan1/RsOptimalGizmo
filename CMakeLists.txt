@@ -3,8 +3,8 @@ project(rsperks)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Ofast -ffast-math -march=native")
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -flto=auto -Ofast -fomit-frame-pointer -march=native")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 if (USE_OPENMP)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -qopenmp")
 endif ()
@@ -23,11 +23,16 @@ set(RS_SOURCES
         rs/Component.h rs/Component.cpp
         rs/Perk.h rs/Perk.cpp
         rs/Probability.h
-        rs/Gizmo.cpp rs/Gizmo.h)
+        rs/Gizmo.cpp rs/Gizmo.h rs/OptimalGizmoSearch.cpp rs/OptimalGizmoSearch.h)
 
 
 # Server
 #add_executable(optimal_gizmo_server optimal_gizmo_server.cpp ${RS_SOURCES})
 #target_link_libraries(optimal_gizmo_server Drogon::Drogon)
 
+# Command Line Search Tool
+add_executable(gizmo-search cmd/cmd_search.cpp ${RS_SOURCES})
+
 add_executable(test cmd/test.cpp ${RS_SOURCES})
+
+add_executable(searchtest cmd/searchtest.cpp ${RS_SOURCES})

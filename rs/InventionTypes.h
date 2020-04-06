@@ -70,6 +70,7 @@ inline size_t slotsForType(GizmoType type) {
         case ANCIENT:
             return 9;
     }
+    return 0;
 }
 
 // Use doubles for probabilities.

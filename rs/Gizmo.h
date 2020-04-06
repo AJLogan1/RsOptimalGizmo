@@ -47,6 +47,12 @@ public:
 
     Gizmo(EquipmentType equipment_type, GizmoType gizmo_type, std::vector<Component> components);
 
+    EquipmentType equipmentType() const;
+
+    GizmoType type() const;
+
+    const std::array<Component, 9> &components() const;
+
     std::array<Component, 9>::const_iterator begin() const;
 
     std::array<Component, 9>::const_iterator end() const;
@@ -56,16 +62,16 @@ public:
     GizmoResultProbabilityList perkProbabilities(level_t invention_level) const;
 
     GizmoResultProbabilityList targetPerkProbabilities(level_t invention_level,
-                                                       GizmoResult target,
+                                                       const GizmoResult &target,
                                                        bool exact_target = true) const;
 
 private:
     EquipmentType equipment_type_;
     GizmoType gizmo_type_;
     std::array<Component, 9> components_;
-    std::vector<perk_id_t> insertion_order_;
+    std::vector<Perk> insertion_order_;
 
-    std::vector<perk_id_t> perkInsertionOrder() const;
+    std::vector<Perk> perkInsertionOrder() const;
 
     std::vector<CDF> perkRollCdf() const;
 
@@ -73,8 +79,8 @@ private:
 
     std::vector<std::pair<std::vector<GeneratedPerk>, probability_t>> perkCombinationProbabilities() const;
 
-    std::vector<std::pair<std::vector<GeneratedPerk>, probability_t>>
-    perkCombinationProbabilities(GizmoResult target, bool exact = true) const;
+    [[maybe_unused]] std::vector<std::pair<std::vector<GeneratedPerk>, probability_t>>
+    perkCombinationProbabilities(const GizmoResult &target, bool exact = true) const;
 
     GizmoResultProbabilityList gizmoResultProbabilities(level_t invention_level,
                                                         bool include_no_effect = false,
