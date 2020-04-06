@@ -9,7 +9,7 @@
 
 std::ostream &operator<<(std::ostream &strm, const GizmoTargetProbability &result) {
     return strm << *result.gizmo << std::endl << "Target Probability: "
-                << std::scientific << std::setprecision(6) << 100 * result.target_probability << "%";
+                << std::defaultfloat << std::setprecision(6) << 100 * result.target_probability << "%";
 }
 
 OptimalGizmoSearch::OptimalGizmoSearch(EquipmentType equipment, GizmoType gizmo_type, GizmoResult target) :
@@ -19,8 +19,8 @@ OptimalGizmoSearch::OptimalGizmoSearch(EquipmentType equipment, GizmoType gizmo_
 
 }
 
-size_t OptimalGizmoSearch::build_candidate_list() {
-    candidate_gizmos_ = candidateGizmos();
+size_t OptimalGizmoSearch::build_candidate_list(const std::vector<Component> &excluded) {
+    candidate_gizmos_ = candidateGizmos(excluded);
     total_candidates = candidate_gizmos_.size();
     return total_candidates;
 }
@@ -29,7 +29,7 @@ std::vector<GizmoTargetProbability> OptimalGizmoSearch::results(level_t inventio
     return targetSearchResults(invention_level);
 }
 
-std::vector<Component> OptimalGizmoSearch::targetPossibleComponents() const {
+std::vector<Component> OptimalGizmoSearch::targetPossibleComponents(const std::vector<Component> &excluded) const {
     std::vector<Component> possible_components;
     std::copy_if(Component::all().begin(), Component::all().end(), std::back_inserter(possible_components),
                  [&](Component c) {
@@ -41,13 +41,14 @@ std::vector<Component> OptimalGizmoSearch::targetPossibleComponents() const {
                                         [&](const PerkContribution &contrib) {
                                             return contrib.perk == target_.first.perk ||
                                                    contrib.perk == target_.second.perk;
-                                        });
+                                        }) &&
+                            std::find(excluded.begin(), excluded.end(), c) == excluded.end();
                  });
     return possible_components;
 }
 
-std::vector<Gizmo> OptimalGizmoSearch::candidateGizmos() const {
-    std::vector<Component> possible_components = targetPossibleComponents();
+std::vector<Gizmo> OptimalGizmoSearch::candidateGizmos(const std::vector<Component> &excluded) const {
+    std::vector<Component> possible_components = targetPossibleComponents(excluded);
     if (possible_components.size() == 0) {
         return {};
     }

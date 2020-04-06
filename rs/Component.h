@@ -40,6 +40,8 @@ struct Component {
     [[nodiscard]] const std::bitset<std::numeric_limits<perk_id_t>::max()> &
     possiblePerkBitset(EquipmentType equipment) const;
 
+    bool operator==(const Component &other) const;
+
     [[nodiscard]] static Component get(component_id_t comp_id);
 
     [[nodiscard]] static Component get(std::string name);

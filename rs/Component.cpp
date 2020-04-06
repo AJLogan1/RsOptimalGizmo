@@ -35,6 +35,10 @@ const std::bitset<std::numeric_limits<perk_id_t>::max()> &Component::possiblePer
     return possible_perk_bitsets_[equipment].at(this->id);
 }
 
+bool Component::operator==(const Component &other) const {
+    return this->id == other.id;
+}
+
 Component Component::get(component_id_t comp_id) {
     return Component::components_by_id_.at(comp_id);
 }

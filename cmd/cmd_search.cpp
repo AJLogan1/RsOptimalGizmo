@@ -93,6 +93,7 @@ int main(int argc, char **argv) {
     level_t invention_level = 120;
     bool strict_target = true;
     size_t max_results = 1;
+    std::vector<Component> excluded_components;
 
     // Targets.
     Perk target_1 = Perk::no_effect;
@@ -197,6 +198,44 @@ int main(int argc, char **argv) {
             }
         }
 
+        // Excluded components.
+        if (token == "-x" || token == "--exclude") {
+            // We read until we reach another token which starts with a '-'.
+            arg_idx++;
+            std::vector<std::string> target_tokens;
+            while (arg_idx < args.size() && args[arg_idx][0] != '-') {
+                target_tokens.push_back(args[arg_idx]);
+                arg_idx++;
+            }
+            arg_idx--;
+            rank_t target_rank = 1;
+
+            // Build component name from other tokens.
+            std::string target_name = std::accumulate(target_tokens.begin(),
+                                                      target_tokens.end(),
+                                                      std::string(),
+                                                      [](const std::string &acc, const std::string &token) {
+                                                          return acc + (acc.length() > 0 ? " " : "") + token;
+                                                      });
+
+            // Search for target perks.
+            std::vector<Component> component_search_results = search_filter_names(Component::all(), target_name);
+            if (component_search_results.size() == 0) {
+                std::cout << "[Error] Component '" << target_name << "' could not be found." << std::endl;
+                exit(2);
+            }
+            if (component_search_results.size() > 1) {
+                std::cout << "[Error] Component '" << target_name << "' is ambiguous. Could be one of: " << std::endl;
+                for (Component result : component_search_results) {
+                    std::cout << "    " << result.name() << std::endl;
+                }
+                std::cout << "Please specify one of these." << std::endl;
+                exit(2);
+            }
+
+            excluded_components.push_back(component_search_results[0]);
+        }
+
         arg_idx++;
     }
 
@@ -206,17 +245,25 @@ int main(int argc, char **argv) {
     // Options set up.
     // Echo the options.
     std::cout << std::endl << "Search configuration:" << std::endl;
-    std::cout << std::setw(18) << "Equipment Type: " << equipment_type << std::endl;
     std::cout << std::setw(18) << "Gizmo Type: " << gizmo_type << std::endl;
+    std::cout << std::setw(18) << "Equipment Type: " << equipment_type << std::endl;
     std::cout << std::setw(18) << "Invention Level: " << unsigned(invention_level) << std::endl;
     std::cout << std::setw(18) << "Target Perks: " << target << std::endl;
+    if (excluded_components.size() > 0) {
+        std::cout << std::setw(18) << "Excluded: " << excluded_components[0] << std::endl;
+        std::for_each(excluded_components.begin() + 1,
+                      excluded_components.end(),
+                      [](const Component &comp) {
+                          std::cout << std::setw(18) << " " << comp << std::endl;
+                      });
+    }
     std::cout << std::endl;
 
     // Begin the search.
     OptimalGizmoSearch search(equipment_type, gizmo_type, target);
 
     std::cout << "Status: Generating candidate gizmos..." << std::flush;
-    size_t num_candidates = search.build_candidate_list();
+    size_t num_candidates = search.build_candidate_list(excluded_components);
     std::cout << "\33[2K\rStatus: Searching " << num_candidates << " candidate gizmos..." << std::flush;
     std::thread progressThread(printProgress, &search);
 

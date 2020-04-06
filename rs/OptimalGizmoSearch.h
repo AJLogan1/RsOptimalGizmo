@@ -27,7 +27,7 @@ public:
                        GizmoType gizmo_type,
                        GizmoResult target);
 
-    size_t build_candidate_list();
+    size_t build_candidate_list(const std::vector<Component> &excluded);
 
     std::vector<GizmoTargetProbability> results(level_t invention_level);
 
@@ -41,9 +41,9 @@ private:
 
     std::vector<Gizmo> candidate_gizmos_;
 
-    std::vector<Component> targetPossibleComponents() const;
+    std::vector<Component> targetPossibleComponents(const std::vector<Component> &excluded) const;
 
-    std::vector<Gizmo> candidateGizmos() const;
+    std::vector<Gizmo> candidateGizmos(const std::vector<Component> &excluded) const;
 
     std::vector<GizmoTargetProbability> targetSearchResults(level_t invention_level);
 };
