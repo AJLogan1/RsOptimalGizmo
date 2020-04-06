@@ -3,27 +3,19 @@ project(rsperks)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Ofast -ffast-math")
-if (USE_OPENMP)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -qopenmp")
+if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
 endif ()
 
-find_package(Boost REQUIRED OPTIONAL_COMPONENTS program_options)
-IF (Boost_PROGRAM_OPTIONS_FOUND)
-    MESSAGE("Boost Program Options was found.")
-ENDIF ()
-include_directories(${Boost_INCLUDE_DIRS})
-
-find_package(Drogon CONFIG REQUIRED)
-find_package(Trantor REQUIRED)
-
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -flto=auto -Ofast -fomit-frame-pointer -march=native")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -Wall -Wextra -Og")
 
 set(RS_SOURCES
-        rs/OptimalGizmo.cpp
-        rs/InventionData.cpp
-        rs/InventionCalc.cpp)
+        rs/Component.h rs/Component.cpp
+        rs/Perk.h rs/Perk.cpp
+        rs/Probability.h
+        rs/Gizmo.cpp
+        rs/OptimalGizmoSearch.cpp)
 
-
-# Server
-add_executable(optimal_gizmo_server optimal_gizmo_server.cpp ${RS_SOURCES})
-target_link_libraries(optimal_gizmo_server Drogon::Drogon)
+# Command Line Search Tool
+add_executable(gizmo-search cmd/cmd_search.cpp ${RS_SOURCES})

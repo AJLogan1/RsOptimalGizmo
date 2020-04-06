@@ -1,11 +1,11 @@
 # RuneScape Optimal Gizmo Calculator
 
-This program is a simple API server for an algorithm for finding optimal gizmos for perk combinations, for RuneScape's Invention skill.
+This program is a simple implementation of an algorithm for finding optimal gizmos for perk combinations, for RuneScape's Invention skill.
 The data used for components and perks, and the perk generation algorithm the search focuses around, can be found on [the RuneScape Wiki](https://runescape.wiki/w/Calculator:Perks).
 
 ## Building
 
-You will need the [drogon](https://github.com/an-tao/drogon) and [boost](https://www.boost.org) libraries installed (along with their dependencies), CMake 3.5+, and a compiler supporting C++17.
+You will need CMake 3.5+, and a compiler supporting C++17.
 After that, the application can be built by:
 
 ```
@@ -15,24 +15,37 @@ cmake ..
 make
 ```
 
-After building, the API server can be run with:
-
-```
-./optimal_gizmo_server
-```
-
-By default, the server will bind to localhost and port 8001.
-This can be changed in `optimal_gizmo_server.cpp` if needed.
-
 ## Usage
 
-When running, sending a GET to (by default) http://127.0.0.1:8001/gizmo can be used to find optimal gizmo information (returned as JSON).
-The parameters are:
+After building, the tool can be run with:
 
-* `perk1`, `perk2` - The names of the first and second perks to search for. `perk2` may be unspecified.
-* `rank1`, `rank2` - Ranks to search for, for corresponding perks.
-* `type` - The gizmo type, either `weapon`, `armour`, or `tool`.
-* `level` - Invention level.
+```
+./gizmo-search <arguments>
+```
+
+The arguments you can specify are:
+
+* Gizmo Type - `-std` for Standard or `-anc` for Ancient. Defaults to `-std`.
+* Equipment Type - `-w` for Weapon, `-t` for Tool, `-a` for Armour. This must be specified.
+* Invention Level - `-l level` where `level` is your invention level. E.g. `-l 137`. Defaults to level 120.
+* Target Perks - `-p perk and rank`. This must be specified, and only up to two targets can be specified. E.g. `-p Precise 4`.
+* Excluded Components - `-x component`. You can specify any number of these, and these components will not be considered when searching for Gizmos. E.g. to exclude Noxious and Subtle: `-x Noxious -x Subtle`.
+* Number of Results - `-n number`. Defaults to 1.
+
+### Full Example
+
+If we wanted to find an Ancient Armour Gizmo containing Biting 4 and Mobile, at Invention level 137, we would run the tool as follows:
+
+```
+./gizmo-search -anc -a -l 137 -p Biting 4 -p Mobile
+```
+
+Or suppose we wanted to do the same, but excluding any Gizmos using Subtle Components.
+We can run:
+
+```
+./gizmo-search -anc -a -l 137 -p Biting 4 -p Mobile -x Subtle
+```
 
 ## How it Works
 
@@ -66,14 +79,10 @@ We can swap the Subtle and first Evasive component to bring the gizmo into norma
 
 Therefore, the normal form of this gizmo is Armadyl, Precise, Subtle, Evasive, Evasive.
 
-In `rs/InventionData.h`, the `ensureNormalForm` function as part of the `Gizmo` struct presents an algorithm for converting any input gizmo into normal form.
-
 ---
 
 Now, we know that if two gizmos share the same normal form, they generate the same perks with the same probabilities, and since they use the same components we can safely discard all but one for the purposes of searching.
 This significantly reduces the number of gizmos we have to calculate perks for.
-
-As the first component is always guaranteed to contribute perks for the purposes of normal form, it suffices to keep track of the last 4 components to help avoid these duplicates, which is done in `rs/OptimalGizmo.cpp` in the search loop by using a `std::set`, where we store 32 bit integers constructed by concatenating the four 8-bit IDs of the back four components of a gizmo.
 
 ### Maximum Total Potential Contribution
 
@@ -95,7 +104,7 @@ But, we have only 3 remaining slots, and 3 * 53 = 159 < 190, so from this point 
 
 These two optimisations together are enough to speed up the search to workable times on their own in *most* cases - for lower rank perks there are still problems.
 
-The final optimisation is the only one which *may* affect the correctness of the algorithm, but such cases should hopefully be rare.
+The final optimisation is the only one which *may* affect the correctness of the algorithm, but such cases should hopefully be rare and so far none have been found.
 
 *We can make the assumption that an optimal gizmo will only ever contain components which have a chance to generate at least one of the two target perks.*
 Now, with the way ties are broken, it is theoretically possible this might not be true, but so far it appears to be a relatively safe assumption.
