@@ -74,10 +74,6 @@ int main(int argc, char **argv) {
     args.assign(argv + 1, argv + argc);
 
     // Print welcome.
-//    std::cout << "################################################################################" << std::endl
-//              << "#                      AJLogan's Gizmo Search Tool (v1.0)                      #" << std::endl
-//              << "################################################################################" << std::endl;
-//    std::cout << __VERSION__;
     std::cout << "Optimal Gizmo Search Tool (" << REL_VERSION << ") by AJLogan (github.com/ajlogan1/RsOptimalGizmo)"
               << std::endl;
     std::cout << "  " << "Built with " << true_cxx << " version " << __VERSION__ << " on " << __DATE__ << " "
