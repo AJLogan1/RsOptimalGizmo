@@ -275,6 +275,11 @@ int main(int argc, char **argv) {
               << duration.count()
               << "ms! (~" << unsigned(gizmo_per_second * 1000) << " gizmos/s)" << std::endl;
 
+    if (results.empty()) {
+        std::cout << std::endl << "No possible gizmos were found." << std::endl;
+        exit(0);
+    }
+
     std::cout << std::endl << "Results:" << std::endl;
 
     for (size_t i = 0; i < (results.size() > max_results ? max_results : results.size()); i++) {
