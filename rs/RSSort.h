@@ -54,7 +54,10 @@ namespace rs {
         int loop_index = low;
 
         while (loop_index < high) {
-            if (value_fn(arr[loop_index]) - value_fn(pivot_value) < (loop_index & 1)) {
+            // We test ((loop_index+1) & 1) here because in our code we sort from index 1.
+            // Therefore, the alternating <=/< would be the wrong way round.
+            // This perhaps isn't the most elegant or portable solution at the moment.
+            if (value_fn(arr[loop_index]) - value_fn(pivot_value) < ((loop_index + 1) & 1)) {
                 A tmp = arr[loop_index];
                 arr[loop_index] = arr[counter];
                 arr[counter] = tmp;
