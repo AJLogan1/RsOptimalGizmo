@@ -63,12 +63,12 @@ private:
     static std::array<std::unordered_map<component_id_t, std::vector<PerkContribution>>, EquipmentType::SIZE>
             component_perk_contributions_;
     static std::array<size_t, std::numeric_limits<component_id_t>::max()> component_costs_;
-    static std::unordered_map<component_id_t, bool> component_ancient_status_;
+    static std::array<bool, std::numeric_limits<component_id_t>::max()> component_ancient_status_;
     static std::array<std::unordered_map<component_id_t, std::bitset<std::numeric_limits<perk_id_t>::max()>>,
             EquipmentType::SIZE>
             possible_perk_bitsets_;
 
-    static std::unordered_map<component_id_t, Component> components_by_id_;
+    static std::array<Component, std::numeric_limits<component_id_t>::max()> components_by_id_;
     static std::unordered_map<std::string, Component> components_by_name_;
 };
 

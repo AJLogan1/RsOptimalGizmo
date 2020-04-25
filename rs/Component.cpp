@@ -18,7 +18,7 @@ std::vector<PerkContribution> &Component::perkContributions(EquipmentType type) 
 }
 
 bool Component::ancient() const {
-    return Component::component_ancient_status_.at(this->id);
+    return Component::component_ancient_status_[this->id];
 }
 
 int Component::totalPotentialContribution(EquipmentType equipment, perk_id_t perk) const {
@@ -57,11 +57,11 @@ std::vector<Component> &Component::all() {
 
 size_t Component::registerComponents(std::string filename) {
     // Register the empty component, if it has not been already.
-    if (!components_by_id_.count(empty_component_id)) {
+    if (!components_by_id_[empty_component_id].id) {
         all_.push_back(Component::empty);
-        components_by_id_.insert({empty_component_id, Component::empty});
+        components_by_id_[empty_component_id] = Component::empty;
         components_by_name_.insert({"Empty", Component::empty});
-        component_ancient_status_.insert({empty_component_id, false});
+        component_ancient_status_[empty_component_id] = false;
         component_names_.insert({empty_component_id, "Empty"});
         component_perk_contributions_[WEAPON].insert({empty_component_id, {}});
         component_perk_contributions_[TOOL].insert({empty_component_id, {}});
@@ -111,13 +111,13 @@ size_t Component::registerComponents(std::string filename) {
         bool ancient = std::stoi(token) != 0;
 
         // Create objects and add to relevant stores.
-        if (!components_by_id_.count(component_id)) {
+        if (!components_by_id_[component_id].id) {
             // Not encountered this component before.
             Component new_comp = {component_id};
             all_.push_back(new_comp);
-            components_by_id_.insert({component_id, new_comp});
+            components_by_id_[component_id] = new_comp;
             components_by_name_.insert({component_name, new_comp});
-            component_ancient_status_.insert({component_id, ancient});
+            component_ancient_status_[component_id] = ancient;
             component_names_.insert({component_id, component_name});
 
             component_perk_contributions_[WEAPON].insert({component_id, {}});
@@ -184,11 +184,11 @@ std::unordered_map<component_id_t, std::string> Component::component_names_;
 std::array<std::unordered_map<component_id_t, std::vector<PerkContribution>>, EquipmentType::SIZE>
         Component::component_perk_contributions_;
 std::array<size_t, std::numeric_limits<component_id_t>::max()> Component::component_costs_;
-std::unordered_map<component_id_t, bool> Component::component_ancient_status_;
+std::array<bool, std::numeric_limits<component_id_t>::max()> Component::component_ancient_status_;
 std::array<std::unordered_map<component_id_t, std::bitset<std::numeric_limits<perk_id_t>::max()>>, EquipmentType::SIZE>
         Component::possible_perk_bitsets_;
 
-std::unordered_map<component_id_t, Component> Component::components_by_id_;
+std::array<Component, std::numeric_limits<component_id_t>::max()> Component::components_by_id_;
 std::unordered_map<std::string, Component> Component::components_by_name_;
 
 std::ostream &operator<<(std::ostream &strm, const Component &component) {

@@ -42,8 +42,6 @@ struct Perk {
 
     [[nodiscard]] static Perk get(std::string name);
 
-    [[nodiscard]] static rank_list_t &ranks(perk_id_t perk_id);
-
     static const Perk no_effect;
 
     static size_t registerPerks(std::string filename);
@@ -55,8 +53,7 @@ private:
     static std::array<rank_list_t, std::numeric_limits<perk_id_t>::max()> perk_ranks_;
     static std::array<bool, std::numeric_limits<perk_id_t>::max()> perk_is_two_slot_;
 
-    static std::unordered_map<perk_id_t, Perk> perks_by_id_;
-    static std::array<Perk, std::numeric_limits<perk_id_t>::max()> fast_perks_by_id_;
+    static std::array<Perk, std::numeric_limits<perk_id_t>::max()> perks_by_id_;
     static std::unordered_map<std::string, Perk> perks_by_name_;
 };
 

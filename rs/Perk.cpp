@@ -32,22 +32,18 @@ std::vector<Perk> &Perk::all() {
 }
 
 Perk Perk::get(perk_id_t id) {
-    return Perk::fast_perks_by_id_.at(id);
+    return Perk::perks_by_id_[id];
 }
 
 Perk Perk::get(std::string name) {
     return Perk::perks_by_name_.at(name);
 }
 
-rank_list_t &Perk::ranks(perk_id_t perk_id) {
-    return perk_ranks_[perk_id];
-}
-
 size_t Perk::registerPerks(std::string filename) {
     // Register no effect if it hasn't been already.
-    if (!perks_by_id_.count(no_effect_id)) {
+    if (!perks_by_id_[no_effect_id].id) {
         all_.push_back(no_effect);
-        perks_by_id_.insert({no_effect_id, no_effect});
+        perks_by_id_[no_effect_id] = no_effect;
         perks_by_name_.insert({"No Effect", no_effect});
         perk_names_.insert({no_effect_id, "No Effect"});
         perk_is_two_slot_[no_effect_id] = false;
@@ -91,12 +87,11 @@ size_t Perk::registerPerks(std::string filename) {
         bool ancient = std::stoi(token) != 0;
 
         // Create objects and add to relevant stores.
-        if (!perks_by_id_.count(perk_id)) {
+        if (!perks_by_id_[perk_id].id) {
             // Not encountered this perk before.
             Perk new_perk = {perk_id, perk_rank};
             all_.push_back(new_perk);
-            perks_by_id_.insert({perk_id, new_perk});
-            fast_perks_by_id_[perk_id] = new_perk;
+            perks_by_id_[perk_id] = new_perk;
             perks_by_name_.insert({perk_name, new_perk});
             perk_names_.insert({perk_id, perk_name});
             perk_is_two_slot_[perk_id] = (perk_name == "Enhanced Devoted" || perk_name == "Enhanced Efficient");
@@ -105,8 +100,7 @@ size_t Perk::registerPerks(std::string filename) {
 
         // Add rank information.
         perk_ranks_[perk_id][perk_rank] = {perk_rank, perk_cost, perk_threshold, ancient};
-        rank_t max_rank = std::max(fast_perks_by_id_[perk_id].max_rank, perk_rank);
-        fast_perks_by_id_[perk_id].max_rank = max_rank;
+        rank_t max_rank = std::max(perks_by_id_[perk_id].max_rank, perk_rank);
         perks_by_id_[perk_id].max_rank = max_rank;
         perks_by_name_[perk_name].max_rank = max_rank;
     }
@@ -120,8 +114,7 @@ std::unordered_map<perk_id_t, std::string> Perk::perk_names_;
 std::array<rank_list_t, std::numeric_limits<perk_id_t>::max()> Perk::perk_ranks_;
 std::array<bool, std::numeric_limits<perk_id_t>::max()> Perk::perk_is_two_slot_;
 
-std::unordered_map<perk_id_t, Perk> Perk::perks_by_id_;
-std::array<Perk, std::numeric_limits<perk_id_t>::max()> Perk::fast_perks_by_id_;
+std::array<Perk, std::numeric_limits<perk_id_t>::max()> Perk::perks_by_id_;
 std::unordered_map<std::string, Perk> Perk::perks_by_name_;
 
 std::ostream &operator<<(std::ostream &strm, const Perk &perk) {
@@ -130,7 +123,7 @@ std::ostream &operator<<(std::ostream &strm, const Perk &perk) {
 
 std::ostream &operator<<(std::ostream &strm, const GeneratedPerk &generated_perk) {
     strm << generated_perk.perk;
-    if (generated_perk.perk.ranks().size() > 1) {
+    if (generated_perk.perk.max_rank > 1) {
         strm << " " << unsigned(generated_perk.rank);
     }
     return strm;
