@@ -35,6 +35,8 @@ struct Component {
 
     [[nodiscard]] bool ancient() const;
 
+    [[nodiscard]] size_t cost() const;
+
     [[nodiscard]] int totalPotentialContribution(EquipmentType equipment, perk_id_t perk) const;
 
     [[nodiscard]] const std::bitset<std::numeric_limits<perk_id_t>::max()> &
@@ -60,7 +62,7 @@ private:
     static std::unordered_map<component_id_t, std::string> component_names_;
     static std::array<std::unordered_map<component_id_t, std::vector<PerkContribution>>, EquipmentType::SIZE>
             component_perk_contributions_;
-    static std::unordered_map<component_id_t, size_t> component_costs_;
+    static std::array<size_t, std::numeric_limits<component_id_t>::max()> component_costs_;
     static std::unordered_map<component_id_t, bool> component_ancient_status_;
     static std::array<std::unordered_map<component_id_t, std::bitset<std::numeric_limits<perk_id_t>::max()>>,
             EquipmentType::SIZE>

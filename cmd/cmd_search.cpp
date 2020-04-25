@@ -82,6 +82,7 @@ int main(int argc, char **argv) {
     // Load configuration.
     Perk::registerPerks("../perkdata.csv");
     Component::registerComponents("../compdata.csv");
+    Component::registerCosts("../compcost.csv");
 
     // Options and defaults.
     EquipmentType equipment_type;

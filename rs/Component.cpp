@@ -31,6 +31,10 @@ int Component::totalPotentialContribution(EquipmentType equipment, perk_id_t per
     return found_contrib != component_contribution.end() ? found_contrib->totalPotentialContribution() : 0;
 }
 
+size_t Component::cost() const {
+    return component_costs_[this->id];
+}
+
 const std::bitset<std::numeric_limits<perk_id_t>::max()> &Component::possiblePerkBitset(EquipmentType equipment) const {
     return possible_perk_bitsets_[equipment].at(this->id);
 }
@@ -62,7 +66,7 @@ size_t Component::registerComponents(std::string filename) {
         component_perk_contributions_[WEAPON].insert({empty_component_id, {}});
         component_perk_contributions_[TOOL].insert({empty_component_id, {}});
         component_perk_contributions_[ARMOUR].insert({empty_component_id, {}});
-        component_costs_.insert({empty_component_id, 0});
+        component_costs_[empty_component_id] = 0;
     }
 
     std::ifstream comp_data_file;
@@ -125,7 +129,7 @@ size_t Component::registerComponents(std::string filename) {
             possible_perk_bitsets_[ARMOUR].insert({component_id, {}});
 
             // Note: Cost can be overridden later.
-            component_costs_.insert({component_id, 0});
+            component_costs_[component_id] = 0;
         }
 
         // Add perk contribution.
@@ -140,6 +144,37 @@ size_t Component::registerComponents(std::string filename) {
 }
 
 size_t Component::registerCosts(std::string filename) {
+    // This function must always be called AFTER registerComponents.
+
+    std::ifstream comp_cost_file;
+    comp_cost_file.open(filename);
+    if (!comp_cost_file) {
+        std::cerr << "[Error] Could not open data file to register costs: " << filename << std::endl;
+        exit(1);
+    }
+
+    std::string line;
+    // File format is ID,Name,Cost
+    while (std::getline(comp_cost_file, line)) {
+        std::stringstream ls(line);
+        std::string token;
+
+        // Get ID
+        std::getline(ls, token, ',');
+        component_id_t component_id = std::stoi(token);
+
+        // Get Name
+        std::getline(ls, token, ',');
+        std::string component_name(std::move(token));
+
+        // Get Cost
+        std::getline(ls, token, ',');
+        size_t component_cost = std::stoi(token);
+
+        // Insert component cost mapping.
+        component_costs_[component_id] = component_cost;
+    }
+
     return 0;
 }
 
@@ -148,7 +183,7 @@ std::vector<Component> Component::all_;
 std::unordered_map<component_id_t, std::string> Component::component_names_;
 std::array<std::unordered_map<component_id_t, std::vector<PerkContribution>>, EquipmentType::SIZE>
         Component::component_perk_contributions_;
-std::unordered_map<component_id_t, size_t> Component::component_costs_;
+std::array<size_t, std::numeric_limits<component_id_t>::max()> Component::component_costs_;
 std::unordered_map<component_id_t, bool> Component::component_ancient_status_;
 std::array<std::unordered_map<component_id_t, std::bitset<std::numeric_limits<perk_id_t>::max()>>, EquipmentType::SIZE>
         Component::possible_perk_bitsets_;

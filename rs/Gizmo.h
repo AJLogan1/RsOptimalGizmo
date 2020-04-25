@@ -53,6 +53,8 @@ public:
 
     const std::array<Component, 9> &components() const;
 
+    size_t cost() const;
+
     std::array<Component, 9>::const_iterator begin() const;
 
     std::array<Component, 9>::const_iterator end() const;

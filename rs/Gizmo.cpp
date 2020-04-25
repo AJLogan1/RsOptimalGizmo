@@ -62,6 +62,12 @@ const std::array<Component, 9> &Gizmo::components() const {
     return this->components_;
 }
 
+size_t Gizmo::cost() const {
+    return std::accumulate(begin(), end(), 0, [](size_t total_cost, const Component &comp) {
+        return total_cost + comp.cost();
+    });
+}
+
 std::array<Component, 9>::const_iterator Gizmo::begin() const {
     return components_.begin();
 }

@@ -9,7 +9,10 @@
 
 std::ostream &operator<<(std::ostream &strm, const GizmoTargetProbability &result) {
     return strm << *result.gizmo << std::endl << "Target Probability: "
-                << std::defaultfloat << std::setprecision(6) << 100 * result.target_probability << "%";
+                << std::defaultfloat << std::setprecision(6) << 100 * result.target_probability << "%"
+                << std::endl
+                << "Expected Cost: "
+                << static_cast<size_t>(static_cast<float>(result.gizmo->cost()) / result.target_probability);
 }
 
 OptimalGizmoSearch::OptimalGizmoSearch(EquipmentType equipment, GizmoType gizmo_type, GizmoResult target) :
