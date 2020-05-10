@@ -5,6 +5,7 @@
 #ifndef RSPERKS_OPTIMALGIZMOSEARCH_H
 #define RSPERKS_OPTIMALGIZMOSEARCH_H
 
+#include <atomic>
 
 #include "InventionTypes.h"
 #include "Gizmo.h"
@@ -29,10 +30,10 @@ public:
 
     size_t build_candidate_list(const std::vector<Component> &excluded);
 
-    std::vector<GizmoTargetProbability> results(level_t invention_level);
+    std::vector<GizmoTargetProbability> results(level_t invention_level, int thread_count = 1);
 
     size_t total_candidates;
-    size_t results_searched;
+    std::atomic_int results_searched;
 
 private:
     EquipmentType equipment_type_;
@@ -45,7 +46,7 @@ private:
 
     std::vector<Gizmo> candidateGizmos(const std::vector<Component> &excluded) const;
 
-    std::vector<GizmoTargetProbability> targetSearchResults(level_t invention_level);
+    std::vector<GizmoTargetProbability> targetSearchResults(level_t invention_level, int thread_count = 1);
 };
 
 
