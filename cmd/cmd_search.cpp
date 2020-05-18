@@ -53,10 +53,12 @@ std::vector<T> search_filter_names(const std::vector<T> &objs, const std::string
 }
 
 void printProgress(OptimalGizmoSearch *const obj) {
-    while (obj->results_searched < obj->total_candidates) {
-        double progress = static_cast<double>(obj->results_searched) / static_cast<double>(obj->total_candidates);
+    size_t total_searched = 0;
+    while (total_searched < obj->total_candidates) {
+        total_searched = obj->resultsSearched();
+        double progress = static_cast<double>(total_searched) / static_cast<double>(obj->total_candidates);
         std::cout << "\33[2K\rProgress: Searched "
-                  << obj->results_searched << "/" << obj->total_candidates
+                  << total_searched << "/" << obj->total_candidates
                   << " (" << std::fixed << std::setprecision(1) << progress * 100 << "%)"
                   << std::flush;
         std::this_thread::sleep_for(std::chrono::milliseconds(250));

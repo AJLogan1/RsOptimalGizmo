@@ -115,8 +115,8 @@ std::vector<CDF> Gizmo::perkRollCdf() const {
         std::for_each(component_perks.begin(), component_perks.end(), [&](const PerkContribution &contrib) {
             bases[contrib.perk.id] += (this->gizmo_type_ == ANCIENT && !comp.ancient()) ?
                                       0.8 * contrib.base : contrib.base;
-            rolls[contrib.perk.id].emplace_back((this->gizmo_type_ == ANCIENT && !comp.ancient()) ?
-                                                0.8 * contrib.roll : contrib.roll);
+            rolls[contrib.perk.id].push_back((this->gizmo_type_ == ANCIENT && !comp.ancient()) ?
+                                             0.8 * contrib.roll : contrib.roll);
         });
     });
 
@@ -126,6 +126,7 @@ std::vector<CDF> Gizmo::perkRollCdf() const {
     for (Perk perk : insertion_order_) {
         CDF base_cdf = CDF(bases[perk.id], 0);
         CDF perk_cdf = Cdf(rolls[perk.id]);
+        base_cdf.reserve(base_cdf.size() + perk_cdf.size());
         base_cdf.insert(base_cdf.end(), perk_cdf.begin(), perk_cdf.end());
         cdfs.emplace_back(std::move(base_cdf));
     }

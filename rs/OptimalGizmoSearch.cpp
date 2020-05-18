@@ -33,6 +33,13 @@ std::vector<GizmoTargetProbability> OptimalGizmoSearch::results(level_t inventio
     return targetSearchResults(invention_level, thread_count);
 }
 
+size_t OptimalGizmoSearch::resultsSearched() {
+    return std::accumulate(thread_progress_.begin(), thread_progress_.end(), 0,
+                           [](size_t v, const SubsearchProgress &progress) {
+                               return v + progress.results_searched;
+                           });
+}
+
 std::vector<Component> OptimalGizmoSearch::targetPossibleComponents(const std::vector<Component> &excluded) const {
     std::vector<Component> possible_components;
     std::copy_if(Component::all().begin(), Component::all().end(), std::back_inserter(possible_components),
@@ -171,10 +178,11 @@ std::vector<Gizmo> OptimalGizmoSearch::candidateGizmos(const std::vector<Compone
     return candidates;
 }
 
-void targetSubsearchResults(level_t invention_level, GizmoResult *target__, std::atomic_int *results_searched,
-        std::vector<GizmoTargetProbability> *results, std::vector<Gizmo> *candidates, int stride, int offset) {
-    for (int i = offset; i < candidates->size(); i += stride) {
-        Gizmo &candidate = (*candidates)[i];
+void targetSubsearchResults(level_t invention_level, GizmoResult *target__, int64_t *results_searched,
+                            std::vector<GizmoTargetProbability> *results, std::vector<Gizmo> *candidates, int stride,
+                            int offset) {
+    for (size_t i = offset; i < candidates->size(); i += stride) {
+        const Gizmo &candidate = (*candidates)[i];
         auto possible_results = candidate.targetPerkProbabilities(invention_level, *target__);
         probability_t total_gizmo_probability = std::accumulate(possible_results.begin(),
                                                                 possible_results.end(),
@@ -190,24 +198,26 @@ void targetSubsearchResults(level_t invention_level, GizmoResult *target__, std:
     }
 }
 
-std::vector<GizmoTargetProbability> OptimalGizmoSearch::targetSearchResults(level_t invention_level, int thread_count) {
-    results_searched = 0;
-
+std::vector<GizmoTargetProbability> OptimalGizmoSearch::targetSearchResults(level_t invention_level,
+                                                                            size_t thread_count) {
     int chunksize = candidate_gizmos_.size() / thread_count + 1;
 
     std::vector<GizmoTargetProbability> results[thread_count];
     std::thread threads[thread_count];
+    thread_progress_.clear();
+    thread_progress_.reserve(thread_count);
 
-    for (int i = 0; i < thread_count; i ++) {
+    for (size_t i = 0; i < thread_count; ++i) {
         results[i].reserve(chunksize);
-        threads[i] = std::thread(targetSubsearchResults, invention_level, &target_, &results_searched,
-                results + i, &candidate_gizmos_, thread_count, i);
+        SubsearchProgress &thread_progress = thread_progress_.emplace_back();
+        threads[i] = std::thread(targetSubsearchResults, invention_level, &target_, &(thread_progress.results_searched),
+                                 results + i, &candidate_gizmos_, thread_count, i);
     }
 
     std::vector<GizmoTargetProbability> resfinal;
     resfinal.reserve(candidate_gizmos_.size());
 
-    for (int i = 0; i < thread_count; i ++) {
+    for (size_t i = 0; i < thread_count; ++i) {
         threads[i].join();
         resfinal.insert(resfinal.end(), results[i].begin(), results[i].end());
     }
