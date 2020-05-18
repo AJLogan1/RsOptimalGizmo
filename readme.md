@@ -31,6 +31,7 @@ The arguments you can specify are:
 * Target Perks - `-p perk and rank`. This must be specified, and only up to two targets can be specified. E.g. `-p Precise 4`.
 * Excluded Components - `-x component`. You can specify any number of these, and these components will not be considered when searching for Gizmos. E.g. to exclude Noxious and Subtle: `-x Noxious -x Subtle`.
 * Number of Results - `-n number`. Defaults to 1.
+* Number of Threads - `-j number`. Defaults to 1.
 
 ### Full Example
 

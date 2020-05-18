@@ -90,6 +90,7 @@ int main(int argc, char **argv) {
     level_t invention_level = 120;
     bool strict_target = true;
     size_t max_results = 1;
+    int thread_count = 1;
     std::vector<Component> excluded_components;
 
     // Targets.
@@ -136,6 +137,14 @@ int main(int argc, char **argv) {
             arg_idx++;
             std::string &num_token = args[arg_idx];
             max_results = std::stoi(num_token);
+        }
+
+        // Setting - Concurrent threads
+        if (token == "-j" || token == "--threads") {
+            // Next token is number of threads.
+            arg_idx++;
+            std::string &num_token = args[arg_idx];
+            thread_count = std::stoi(num_token);
         }
 
         // Target Perks
@@ -265,7 +274,7 @@ int main(int argc, char **argv) {
     std::thread progressThread(printProgress, &search);
 
     auto start = std::chrono::high_resolution_clock::now();
-    auto results = search.results(invention_level);
+    auto results = search.results(invention_level, thread_count);
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
