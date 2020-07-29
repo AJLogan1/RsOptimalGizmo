@@ -44,6 +44,10 @@ std::vector<Component> OptimalGizmoSearch::targetPossibleComponents(const std::v
     std::vector<Component> possible_components;
     std::copy_if(Component::all().begin(), Component::all().end(), std::back_inserter(possible_components),
                  [&](Component c) {
+                     if (c == c.empty) {
+                         return true;
+                     }
+
                      if (gizmo_type_ != ANCIENT && c.ancient()) {
                          return false;
                      }
@@ -108,6 +112,11 @@ std::vector<Gizmo> OptimalGizmoSearch::candidateGizmos(const std::vector<Compone
                                                                                                target_.second.perk.id);
 
         bool indifferent = false;
+
+        if (possible_components[indices[0]] == Component::empty) {
+            goto skip;
+        }
+
         for (size_t i = 1; i < indices.size(); ++i) {
             size_t idx = indices[i];
             t1_contrib_remaining -= max_target_1_contrib;
@@ -224,7 +233,13 @@ std::vector<GizmoTargetProbability> OptimalGizmoSearch::targetSearchResults(leve
 
     // Sort results by inverse probability.
     std::sort(resfinal.begin(), resfinal.end(), [](const auto &a, const auto &b) {
-        return a.target_probability > b.target_probability;
+        if (a.target_probability == b.target_probability) {
+            size_t a_empty_count = std::count(a.gizmo->begin(), a.gizmo->end(), Component::empty);
+            size_t b_empty_count = std::count(b.gizmo->begin(), b.gizmo->end(), Component::empty);
+            return a_empty_count >= b_empty_count;
+        } else {
+            return a.target_probability > b.target_probability;
+        }
     });
 
     return resfinal;
