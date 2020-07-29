@@ -112,6 +112,11 @@ std::vector<Gizmo> OptimalGizmoSearch::candidateGizmos(const std::vector<Compone
                                                                                                target_.second.perk.id);
 
         bool indifferent = false;
+
+        if (possible_components[indices[0]] == Component::empty) {
+            goto skip;
+        }
+
         for (size_t i = 1; i < indices.size(); ++i) {
             size_t idx = indices[i];
             t1_contrib_remaining -= max_target_1_contrib;
