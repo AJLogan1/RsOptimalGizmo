@@ -66,6 +66,9 @@ size_t Component::registerComponents(std::string filename) {
         component_perk_contributions_[WEAPON].insert({empty_component_id, {}});
         component_perk_contributions_[TOOL].insert({empty_component_id, {}});
         component_perk_contributions_[ARMOUR].insert({empty_component_id, {}});
+        possible_perk_bitsets_[WEAPON].insert({empty_component_id, {}});
+        possible_perk_bitsets_[TOOL].insert({empty_component_id, {}});
+        possible_perk_bitsets_[ARMOUR].insert({empty_component_id, {}});
         component_costs_[empty_component_id] = 0;
     }
 

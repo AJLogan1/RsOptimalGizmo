@@ -44,6 +44,10 @@ std::vector<Component> OptimalGizmoSearch::targetPossibleComponents(const std::v
     std::vector<Component> possible_components;
     std::copy_if(Component::all().begin(), Component::all().end(), std::back_inserter(possible_components),
                  [&](Component c) {
+                     if (c == c.empty) {
+                         return true;
+                     }
+
                      if (gizmo_type_ != ANCIENT && c.ancient()) {
                          return false;
                      }
