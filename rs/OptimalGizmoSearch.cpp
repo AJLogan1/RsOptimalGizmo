@@ -233,7 +233,27 @@ std::vector<GizmoTargetProbability> OptimalGizmoSearch::targetSearchResults(leve
 
     // Sort results by inverse probability.
     std::sort(resfinal.begin(), resfinal.end(), [](const auto &a, const auto &b) {
-        return a.target_probability > b.target_probability;
+        if (a.target_probability == b.target_probability) {
+            int count = 0;
+
+            for (auto comp : *(a.gizmo)) {
+                if (comp == Component::empty) {
+                    count ++;
+                }
+            }
+
+            for (auto comp : *(b.gizmo)) {
+                if (comp == Component::empty) {
+                    if (-- count < 0) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        } else {
+            return a.target_probability > b.target_probability;
+        }
     });
 
     return resfinal;
